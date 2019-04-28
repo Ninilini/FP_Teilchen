@@ -1,0 +1,22 @@
+[0] Config.pm:304> INFO - This is Biber 2.12
+[0] Config.pm:307> INFO - Logfile is 'main.blg'
+[23] biber:315> INFO - === Sun Apr 28, 2019, 15:25:14
+[46] Biber.pm:371> INFO - Reading 'main.bcf'
+[108] Biber.pm:886> INFO - Using all citekeys in bib section 0
+[119] Biber.pm:4093> INFO - Processing section 0
+[130] Biber.pm:4254> INFO - Looking for bibtex format file 'lit.bib' for section 0
+[137] bibtex.pm:1523> INFO - LaTeX decoding ...
+[144] bibtex.pm:1340> INFO - Found BibTeX data source 'lit.bib'
+[172] Biber.pm:4254> INFO - Looking for bibtex format file 'programme.bib' for section 0
+[174] bibtex.pm:1523> INFO - LaTeX decoding ...
+[179] bibtex.pm:1340> INFO - Found BibTeX data source 'programme.bib'
+[180] Utils.pm:193> WARN - Duplicate entry key: 'matplotlib' in file 'programme.bib', skipping ...
+[180] Utils.pm:193> WARN - Duplicate entry key: 'numpy' in file 'programme.bib', skipping ...
+[180] Utils.pm:193> WARN - Duplicate entry key: 'scipy' in file 'programme.bib', skipping ...
+[201] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[201] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[201] Biber.pm:3921> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'de-DE'
+[202] Biber.pm:3927> INFO - No sort tailoring available for locale 'de-DE'
+[212] bbl.pm:636> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[214] bbl.pm:739> INFO - Output to main.bbl
+[215] Biber.pm:110> INFO - WARNINGS: 3
