@@ -11,9 +11,9 @@ endif
 all: Protokoll.pdf
 
 # hier Python-Skripte:
-plots: plots/plot.py matplotlibrc header-matplotlib.tex | data
+plots: plots/*/*.py matplotlibrc header-matplotlib.tex | data
 	@echo 'Python-Plots:'
-	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/plot.py
+	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/*/*.py
 	@echo
 
 again:
@@ -37,9 +37,9 @@ graphics:
 tables:
 	mkdir -p tables
 
-plots/plot.pdf: plots/plot.py matplotlibrc header-matplotlib.tex data
+plots/plot.pdf: plots/*/*.py matplotlibrc header-matplotlib.tex data
 	@echo 'Python-Plots:'
-	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/plot.py
+	TEXINPUTS="$(call translate,$(pwd):)" python3 plots/*/*.py
 	@echo
 
 .DELETE_ON_ERROR:
