@@ -1,3 +1,5 @@
 .DS_Store
 *.pdf
-build/
+*/build/
+!Si_Streifensensor/graphics/*.pdf
+!Si_Streifensensor/plots/*.pdf
