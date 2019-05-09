@@ -30,16 +30,17 @@ Für eine effiziente Detektion von Strahlung muss der Sensor vollständig deplet
   \FloatBarrier
 
   Die Messwerte sind in Abbildung \ref{fig:UI-Kennlinie} graphisch dargestellt.
-  Nähert sich die angelegte Spannung $U$ der Depletionsspannung $U_\mathrm{Dep}$, geht die Kennlinie in einen linearen Sättigungsverlauf über. In diesem Bereich tragen lediglich Exzitonen aus thermischen Anregungen zum Leckstrom bei, da die ladungsträgerarme Zone über den gesamten Sensor ausgebreitet ist. Bei Spannungen unterhalb von $U_\mathrm{Dep}$ tragen zusätzlich freie Ladungsträger der Dotierungen zum Leckstrom bei. In diesem Übergang wird die Depletionsspannung auf einen Wert von
+  Nähert sich die angelegte Spannung $U$ der Depletionsspannung $U_{\mathrm{Dep}}$, geht die Kennlinie in einen linearen Sättigungsverlauf über.
+	In diesem Bereich tragen lediglich Exzitonen aus thermischen Anregungen zum Leckstrom bei, da die ladungsträgerarme Zone über den gesamten Sensor ausgebreitet ist. Bei Spannungen unterhalb von $U_{\mathrm{Dep}}$ tragen zusätzlich freie Ladungsträger der Dotierungen zum Leckstrom bei. In diesem Übergang wird die Depletionsspannung auf einen Wert von
   \begin{align*}
-    U_\mathrm{Dep} \approx \SI{61}{\volt}
+    U_{\mathrm{Dep}} \approx \SI{61}{\volt}
   \end{align*}
   abgeschätzt. Im weiteren Verlauf wird die Vorspannung auf einen Wert von $U=\SI{85}{\volt}$ geregelt.
 
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Kennlinie_Laser.pdf}
-  \caption{Leckstrom $I$ in Abhängigkeit der angelegten Spannung $U$ für zwei Messreihen. Im Beginn des Plateus findet sich die abgeschätzte Depletionsspannung $U_\mathrm{Dep}$.}
+  \caption{Leckstrom $I$ in Abhängigkeit der angelegten Spannung $U$ für zwei Messreihen. Im Beginn des Plateus findet sich die abgeschätzte Depletionsspannung $U_{\mathrm{Dep}}$.}
   \label{fig:UI-Kennlinie}
 \end{figure}
 \FloatBarrier
@@ -72,7 +73,7 @@ Eine Korrektur des Untergrundes wird im Folgenden elektronisch durch ein \textit
 \subsection{Kalibration}
 \label{kap:Kalibration}
 Um aus den gemessenen ADCC einen Wert für die im Detektor deponierte Energie zu erhalten, ist eine Kalibrationsmessung nötig. Hierzu werden fest definierte Elektronenpulse an den Detektor gesendet und die jeweiligen ADCC aufgenommen.
-Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen diesbezüglich zu vermeiden, wird zunächst eine optimale Verzögerungszeit zwischen dem gesendeten Puls und der Auslese der Sensoren ermittelt. Zu diesem Zweck werden die ADCC in Abhängigkeit von der Verzögerungszeit aufgenommen, welche in Abbildung \ref{fig:Delay} zu erkennen sind. Die optimale Verzögerungszeit lässt sich an der Stelle ausmachen, wo eine maximale Anzahl an ADCC registriert wird. Dieses ist bei einem Zeitabstand von $t_\mathrm{Delay}=\SI{61}{\nano\second}$ der Fall.
+Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen diesbezüglich zu vermeiden, wird zunächst eine optimale Verzögerungszeit zwischen dem gesendeten Puls und der Auslese der Sensoren ermittelt. Zu diesem Zweck werden die ADCC in Abhängigkeit von der Verzögerungszeit aufgenommen, welche in Abbildung \ref{fig:Delay} zu erkennen sind. Die optimale Verzögerungszeit lässt sich an der Stelle ausmachen, wo eine maximale Anzahl an ADCC registriert wird. Dieses ist bei einem Zeitabstand von $t_{\mathrm{Delay}}=\SI{61}{\nano\second}$ der Fall.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Delay.pdf}
@@ -80,11 +81,11 @@ Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen die
   \label{fig:Delay}
 \end{figure}
 \FloatBarrier
-Die Messdaten des \textit{Calibration Run} bei einer angelegten Spannung von $U=U_\text{Dep}$, nämlich die ADCC für den jeweiligen Elektronenpuls, sind für vier verschiedene Streifen mit den Streifennummern 50, 70, 80 und 90 in Abbildung \ref{fig:KanalPlot} zu erkennen. Zum Abschätzen der Energie, welche durch die Elektronen auf den Sensor auftrifft, wird die Anzahl der gesendeten Elektronen mit der Energie, welche zur Erzeugung eines Elektronen-Loch-Paares in Silizium ($\SI{3.6}{\electronvolt}$) nötig ist, multipliziert. Zusätzlich sind diese Wertepaare in Abbildung \ref{fig:0V80V} für einen weiteren Streifen mit der Streifennummer 60 bei Vorspannungen von $U=\SI{0}{\volt}$ und $U=U_\mathrm{Dep}$ zum Vergleich dargestellt.
+Die Messdaten des \textit{Calibration Run} bei einer angelegten Spannung von $U=U_\text{Dep}$, nämlich die ADCC für den jeweiligen Elektronenpuls, sind für vier verschiedene Streifen mit den Streifennummern 50, 70, 80 und 90 in Abbildung \ref{fig:KanalPlot} zu erkennen. Zum Abschätzen der Energie, welche durch die Elektronen auf den Sensor auftrifft, wird die Anzahl der gesendeten Elektronen mit der Energie, welche zur Erzeugung eines Elektronen-Loch-Paares in Silizium ($\SI{3.6}{\electronvolt}$) nötig ist, multipliziert. Zusätzlich sind diese Wertepaare in Abbildung \ref{fig:0V80V} für einen weiteren Streifen mit der Streifennummer 60 bei Vorspannungen von $U=\SI{0}{\volt}$ und $U=U_{\mathrm{Dep}}$ zum Vergleich dargestellt.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/0V_80V_Vergleich.pdf}
-  \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für eine angelegte Spannung von $U=\SI{0}{\volt}$ und $U=U_\mathrm{Dep}$ des Streifen 60.}
+  \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für eine angelegte Spannung von $U=\SI{0}{\volt}$ und $U=U_{\mathrm{Dep}}$ des Streifen 60.}
   \label{fig:0V80V}
 \end{figure}
 \FloatBarrier
@@ -125,7 +126,7 @@ Für die Parameter der Umrechnungsfunktion ergeben sich mittels \textit{curve\_f
 \label{kap:Vermessung}
 Für das Durchführen von Messungen mit einer Laserquelle muss die Laserposition sehr genau justiert werden, da dieser nur eine sehr kleine Strahlausdehnung besitzt. Aus diesem Grund muss der Laser so ausgerichtet werden, dass er genau einen Streifen trifft, wofür die Position der Steifensensoren bekannt sein muss. Hierzu wird das Signal für verschiedene Laserpositionen aufgenommen.
 
-Zunächst muss erneut die optimale Verzögerungszeit zwischen Laserimpuls und Auslese ermittelt werden. Das Vorgehen erfolgt analog zum vorherigen Abschnitt \ref{kap:Kalibration}. Aus den Messwerten, welche Abbildung \ref{fig:Delay Laser} zu entnehmen sind, ergibt sich eine optimale Verzögerungszeit von $t_\mathrm{Delay}=\SI{108}{\nano\second}$.
+Zunächst muss erneut die optimale Verzögerungszeit zwischen Laserimpuls und Auslese ermittelt werden. Das Vorgehen erfolgt analog zum vorherigen Abschnitt \ref{kap:Kalibration}. Aus den Messwerten, welche Abbildung \ref{fig:Delay Laser} zu entnehmen sind, ergibt sich eine optimale Verzögerungszeit von $t_{\mathrm{Delay}}=\SI{108}{\nano\second}$.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Delay_Laser.pdf}
