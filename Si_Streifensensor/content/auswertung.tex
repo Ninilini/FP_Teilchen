@@ -39,7 +39,7 @@ Für eine effiziente Detektion von Strahlung muss der Sensor vollständig deplet
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/Kennlinie_Laser.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/Kennlinie_Laser.pdf}
   \caption{Leckstrom $I$ in Abhängigkeit der angelegten Spannung $U$ für zwei Messreihen. Im Beginn des Plateus findet sich die abgeschätzte Depletionsspannung $U_{\mathrm{Dep}}$.}
   \label{fig:UI-Kennlinie}
 \end{figure}
@@ -50,7 +50,7 @@ Für eine effiziente Detektion von Strahlung muss der Sensor vollständig deplet
 Durch verschiedene Störquellen enthält das vom Detektor empfangene Signal ein Rauschen. Zum Abschätzen des Untergrundes wird eine Messung ohne externe Quellen durchgeführt, sodass lediglich das Rauschsignal vom Sensor detektiert wird. Aus den gemessenen Signalen werden anschließend nach Gleichungen \eqref{eq:15} und \eqref{eq:16} die Pedestal- sowie die Noisewerte berechnet und in Abbildung \ref{fig:Pedestals} in Abhängigkeit von der Streifennummer aufgetragen.
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/Pedestals_Noise.pdf}
+  \includegraphics[width=\textwidth]{plots/Pedestals_Noise.pdf}
   \caption{Darstellung der berechneten Pedestal- und Noisewerte in Abhängigkeit von der Streifennummer.}
   \label{fig:Pedestals}
 \end{figure}
@@ -76,7 +76,7 @@ Um aus den gemessenen ADCC einen Wert für die im Detektor deponierte Energie zu
 Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen diesbezüglich zu vermeiden, wird zunächst eine optimale Verzögerungszeit zwischen dem gesendeten Puls und der Auslese der Sensoren ermittelt. Zu diesem Zweck werden die ADCC in Abhängigkeit von der Verzögerungszeit aufgenommen, welche in Abbildung \ref{fig:Delay} zu erkennen sind. Die optimale Verzögerungszeit lässt sich an der Stelle ausmachen, wo eine maximale Anzahl an ADCC registriert wird. Dieses ist bei einem Zeitabstand von $t_{\mathrm{Delay}}=\SI{61}{\nano\second}$ der Fall.
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/Delay.pdf}
+  \includegraphics[width=0.55\textwidth]{plots/Delay.pdf}
   \caption{ADCC in Abhängigkeit von der Verzögerungszeit zwischen gesendeten Elektronenpuls und Auslese der Sensoren. Die optimale Verzögerungszeit (rotes Kreuz) ist im Maximum der ADCC zu finden.}
   \label{fig:Delay}
 \end{figure}
@@ -84,14 +84,14 @@ Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen die
 Die Messdaten des \textit{Calibration Run} bei einer angelegten Spannung von $U=U_\text{Dep}$, nämlich die ADCC für den jeweiligen Elektronenpuls, sind für vier verschiedene Streifen mit den Streifennummern 50, 70, 80 und 90 in Abbildung \ref{fig:KanalPlot} zu erkennen. Zum Abschätzen der Energie, welche durch die Elektronen auf den Sensor auftrifft, wird die Anzahl der gesendeten Elektronen mit der Energie, welche zur Erzeugung eines Elektronen-Loch-Paares in Silizium ($\SI{3.6}{\electronvolt}$) nötig ist, multipliziert. Zusätzlich sind diese Wertepaare in Abbildung \ref{fig:0V80V} für einen weiteren Streifen mit der Streifennummer 60 bei Vorspannungen von $U=\SI{0}{\volt}$ und $U=U_{\mathrm{Dep}}$ zum Vergleich dargestellt.
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/0V_80V_Vergleich.pdf}
+  \includegraphics[width=0.55\textwidth]{plots/0V_80V_Vergleich.pdf}
   \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für eine angelegte Spannung von $U=\SI{0}{\volt}$ und $U=U_{\mathrm{Dep}}$ des Streifen 60.}
   \label{fig:0V80V}
 \end{figure}
 \FloatBarrier
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/Kalib_Kanal_Plot.pdf}
+  \includegraphics[width=0.7\textwidth]{plots/Kalib_Kanal_Plot.pdf}
   \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für die Streifen 50, 70, 80 und 90.}
   \label{fig:KanalPlot}
 \end{figure}
@@ -175,7 +175,7 @@ Die in Kanal 62 aufgenommenen spannungsabhängigen ADCC werden auf den Sättigun
   \label{fig:KennlinieLaser}
 \end{figure}
 \FloatBarrier
-Die Eindringtiefe des Lasers kann über eine Regressionsrechnung von Gleichung \eqref{eq:20} aus den Kennlinienwerten berechnet werden. Mittels der Funktion \textit{curve\_fit} von \textit{scipy.optimize} wird für die Eindringtiefe ein Wert von
+Die Eindringtiefe des Lasers kann über eine Regressionsrechnung von Gleichung \eqref{eq:20} aus den Kennlinienwerten berechnet werden. Mittels der Funktion \textit{curve\_fit} von \textit{scipy.optimize} \cite{scipy} wird für die Eindringtiefe ein Wert von
 \begin{align*}
    a= \SI{565(218)}{\micro\metre}
 \end{align*}
