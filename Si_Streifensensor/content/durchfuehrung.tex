@@ -21,10 +21,10 @@ Die makroskopische Aufnahme in Abbildung \ref{fig:streifendetektor} ermöglicht 
   \label{fig:streifendetektor}
 \end{figure}
 Erhält der Auslesechip ein Signal, weil ein geladenes Teilchen durch einen Streifen geflogen ist, verstärkt er dieses Signal zunächst und wandelt es in ein Spannungssignal um. Dieses Signal befindet sich dann in einer Pipeline und wird weiter geleitet, wenn ebenfalls ein Triggersignal erhalten wird. Andernfalls werden die Daten verworfen.\\
-Um diese Funktionsweise zu erreichen, muss der Silizium-Sensor, wie in Kapitel \ref{sec:Theorie} beschrieben, vollständig depletiert sein.Bei dem EASy liegt dazu $U_\text{Dep}$ bei ungefähr \SIrange{60}{80}{\volt}. Um zu ermitteln, inwiefern der Sensor depletiert ist, wird die Effizienz der Ladunssammlung (\textit{engl.: Charge Collection Effiency} CCE) bestimmt. Maximal ist diese Effizienz, wenn eine vollkommene Depletierung ($U \ge U_\text{Dep}$) vorhanden ist. In diesem Fall lässt sich der Sensor als Detektor verwenden. Die CCE kann durch
+Um diese Funktionsweise zu erreichen, muss der Silizium-Sensor, wie in Kapitel \ref{sec:Theorie} beschrieben, vollständig depletiert sein. Bei dem EASy liegt dazu $U_\text{Dep}$ bei ungefähr \SI{60}{\volt} bis \SI{80}{\volt}. Um zu ermitteln, inwiefern der Sensor depletiert ist, wird die Effizienz der Ladunssammlung (\textit{engl.: Charge Collection Effiency} CCE) bestimmt. Maximal ist diese Effizienz, wenn eine vollkommene Depletierung ($U \ge U_\text{Dep}$) vorhanden ist. In diesem Fall lässt sich der Sensor als Detektor verwenden. Die CCE kann durch
 \begin{equation}
   \text{CCE}(U) = \frac{1 - \exp\left(\frac{-d_\text{c}(U)}{a}\right)}{1 - \exp\left(\frac{-D}{a}\right)}
-  \label{eqn:CCEL}
+  \label{eqn:20}
 \end{equation}
 bestimmt werden. Diese Formel gilt jedoch nur für Photonen, daher wird diese Messung mit dem eingebauten Laser durchgeführt. Hierbei ist $d_\text{c}$ die Dicke der Depletionszone, $D$ die Sensordicke und $a$ die Eindringtiefe des Lasers in das Silizium.
 
@@ -79,7 +79,7 @@ Aus strahlenschutztechnischen Gründen befindet sich die Detektoreinheit für di
 \subsection{Messung der Strom-Spannungs-Kennlinie}
 \label{sec:Kennlinie}
 Zur Aufnahme einer Strom-Spannungs-Kennlinie werden zunächste die Detektor- und Kontrolleinheit mit dem Computer verbunden und das zur Steuerung von EASy mitgeführte Programm \textit{Alibava\_gui} gestartet. Zur konkreten Messung muss anschließend die Vorspannung von \SI{0}{\volt} bis einschließlich \SI{200}{\volt} in \SI{10}{\volt} Schritten durchlaufen und der Leckstrom aufgezeichnet werden.\\
-Aus dem erhaltenden Verlauf lässt sich die Depletionsspannung abschätzen. Diese ist an dem Übergang von einem sättigenden zu einem linearen Verlauf zu erkennen. Um zu gewährleisten, dass der Sensor vollständig depletiert ist, wird eine ca. \SI{20}{\volt} größer Depletionsspannung gewählt als der ermittelte Wert.
+Aus dem erhaltenden Verlauf lässt sich die Depletionsspannung abschätzen. Diese ist an dem Übergang von einem sättigenden zu einem linearen Verlauf zu erkennen. Um zu gewährleisten, dass der Sensor vollständig depletiert ist, wird eine ca. \SI{20}{\volt} größere Depletionsspannung gewählt als der ermittelte Wert.
 
 \subsection{Pedestals und Noise}
 \label{sec:Auswertung_Noise}
@@ -101,7 +101,7 @@ Im zweiten Schritt werden fünf verschiedene Kanäle bzw. Streifen des Streifend
 \FloatBarrier
 \subsection{Vermessung der Streifendetektoren mittels Laser}
 \label{sec:Vermessung_Laser}
-Die Streifenstruktur des Sensors lässt sich mit Hilfe eines Lasers untersuchen, da oberhalb der Streifen eine Metallisierung befindet, welche das vom Laser emittierte Licht reflektiert und daher den Halbleiter nicht durchdringt.\\
+Die Streifenstruktur des Sensors lässt sich mit Hilfe eines Lasers untersuchen, da sich oberhalb der Streifen eine Metallisierung befindet, welche das vom Laser emittierte Licht reflektiert und daher den Halbleiter nicht durchdringt.\\
 Zu Beginn wird dazu die optimale Verzögerung zwischen Lasersignal und Chipauslese bestimmt. Dafür wird unter \textit{Option} \textit{Laser Sync.} ausgewählt und der Run durchgeführt. Aus dem Maximum der angezeigten Abhängigkeit zwischen gemessenen ADC-Counts und Verzögerung kann nun die optimale Verzögerung abgelesen und unter dem Formularfeld bei \textit{Laser Run} eingetragen werden.\\
 Als nächstes wird mit der horizontalen Mikrometerschraube der Peak maximiert. Dies ist der Fall, wenn der Laser genau senkrecht auf eine Metallisierung trifft. Von diesem Startpunkt aus wird in \num{35} \SI{10}{\micro\meter}-Schritten ein Laserscan durchgeführt und diese einzelnd gespeichert.
 
@@ -109,10 +109,10 @@ Als nächstes wird mit der horizontalen Mikrometerschraube der Peak maximiert. D
 \subsection{Bestimmung der Charge Collection Eficiency}
 \label{sec:CCE}
 \subsubsection{Unter Verwendung eines Lasers}
-Wie im Schritt zuvor wird zu Beginn dieser Messung erst der maximale Peak mit optimaler Verzögerung gesucht. Nun wird allerdings für je \num{1000} Events die Spannung von \SIrange{0}{200}{\volt} in \SI{10}{\volt}-Schritten erhöht und ein Run durchgeführt.
+Wie im Schritt zuvor wird zu Beginn dieser Messung erst der maximale Peak mit optimaler Verzögerung gesucht. Nun wird allerdings für je \num{1000} Events die Spannung von \SI{0}{\volt} bis \SI{200}{\volt} in \SI{10}{\volt}-Schritten erhöht und ein Run durchgeführt.
 
 \subsubsection{Unter Verwendung einer Sr-Quelle}
-Nach dem Umplatzierung der Detektoreinheit in den strahlengeschützen Aufbau wird der Laser in die horizontale Ausrichtung gebracht und die Sr-Quelle in Position gebracht. Analog zu der CCE-Bestimmung duch einen Laser wird die Spanung in \SI{10}{\volt}-Schritten von \SIrange{0}{200}{\volt} erhöht. Hier werden pro Run der Datensatz auf \num{10000} erhöht.
+Nach der Umplatzierung der Detektoreinheit in den strahlengeschützen Aufbau wird der Laser in die horizontale Ausrichtung gebracht und die Sr-Quelle in Position gebracht. Analog zu der CCE-Bestimmung duch einen Laser wird die Spanung in \SI{10}{\volt}-Schritten von \SI{0}{\volt} bis \SI{200}{\volt} erhöht. Hier werden pro Run der Datensatz auf \num{10000} erhöht.
 
 \subsection{Großer Quellscan}
 \label{sec:Quellscan}

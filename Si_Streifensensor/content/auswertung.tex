@@ -47,7 +47,7 @@ Für eine effiziente Detektion von Strahlung muss der Sensor vollständig deplet
 
 \subsection{Pedestals und Noise}
 \label{kap:Pedestal}
-Durch verschiedene Störquellen enthält das vom Detektor empfangene Signal ein Rauschen. Zum Abschätzen des Untergrundes wird eine Messung ohne externe Quellen durchgeführt, sodass lediglich das Rauschsignal vom Sensor detektiert wird. Aus den gemessenen Signalen werden anschließend nach Gleichungen \eqref{eq:15} und \eqref{eq:16} die Pedestal- sowie die Noisewerte berechnet und in Abbildung \ref{fig:Pedestals} in Abhängigkeit von der Streifennummer aufgetragen.
+Durch verschiedene Störquellen enthält das vom Detektor empfangene Signal ein Rauschen. Zum Abschätzen des Untergrundes wird eine Messung ohne externe Quellen durchgeführt, sodass lediglich das Rauschsignal vom Sensor detektiert wird. Aus den gemessenen Signalen werden anschließend nach Gleichungen \eqref{eqn:15} und \eqref{eqn:16} die Pedestal- sowie die Noisewerte berechnet und in Abbildung \ref{fig:Pedestals} in Abhängigkeit von der Streifennummer aufgetragen.
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{plots/Pedestals_Noise.pdf}
@@ -58,7 +58,7 @@ Durch verschiedene Störquellen enthält das vom Detektor empfangene Signal ein 
 Die Pedestals weisen eine Schwankung um etwa 10 ADCC auf. Bei den Streifennummern 60 bis 100 fallen hierbei besonders niedrige Pedestalwerte ins Auge.
 Über alle Kanalnummern hinweg ist ein regelmäßiges Rauschsignal von bis zu 0.3 ADCC zu beobachten.
 
-Des Weiteren werden die Werte des Common-Mode-Shifts mittels Gleichung \eqref{eq:18} berechnet. Die Verteilung der Werte ist in Abbildung \ref{fig:CommonModeShift} dargestellt. Da nach \cite{anleitung} eine Gaußverteilung der Werte um Null zu erwarten ist, wird die Varianz der Common-Mode-Shift-Verteilung ermittelt und eine entsprechende Gaußkurve in die Werte gelegt.
+Des Weiteren werden die Werte des Common-Mode-Shifts mittels Gleichung \eqref{eqn:18} berechnet. Die Verteilung der Werte ist in Abbildung \ref{fig:CommonModeShift} dargestellt. Da nach \cite{anleitung} eine Gaußverteilung der Werte um Null zu erwarten ist, wird die Varianz der Common-Mode-Shift-Verteilung ermittelt und eine entsprechende Gaußkurve in die Werte gelegt.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/CommonModeShift.pdf}
@@ -175,7 +175,7 @@ Die in Kanal 62 aufgenommenen spannungsabhängigen ADCC werden auf den Sättigun
   \label{fig:KennlinieLaser}
 \end{figure}
 \FloatBarrier
-Die Eindringtiefe des Lasers kann über eine Regressionsrechnung von Gleichung \eqref{eq:20} aus den Kennlinienwerten berechnet werden. Mittels der Funktion \textit{curve\_fit} von \textit{scipy.optimize} \cite{scipy} wird für die Eindringtiefe ein Wert von
+Die Eindringtiefe des Lasers kann über eine Regressionsrechnung von Gleichung \eqref{eqn:20} aus den Kennlinienwerten berechnet werden. Mittels der Funktion \textit{curve\_fit} von \textit{scipy.optimize} \cite{scipy} wird für die Eindringtiefe ein Wert von
 \begin{align*}
    a= \SI{565(218)}{\micro\metre}
 \end{align*}
