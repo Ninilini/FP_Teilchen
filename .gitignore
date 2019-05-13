@@ -3,3 +3,4 @@
 */build/
 !Si_Streifensensor/graphics/*.pdf
 !Si_Streifensensor/plots/*.pdf
+*.hdf5
