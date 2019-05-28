@@ -4,5 +4,5 @@
 !Si_Streifensensor/graphics/*.pdf
 !Si_Streifensensor/plots/*.pdf
 *.hdf5
-!Szintillierende_Fasern/data/*.txt
+Szintillierende_Fasern/data/*.txt
 
