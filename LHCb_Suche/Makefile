@@ -44,7 +44,7 @@ plots/plot.pdf: plots/plot.py matplotlibrc header-matplotlib.tex data
 
 .DELETE_ON_ERROR:
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-Protokoll.pdf: main.tex content/* header.tex lit.bib programme.bib graphics tables | build
+Protokoll.pdf: main.tex content/* header.tex lit.bib graphics tables | build
 	@TEXINPUTS="$(call translate,build:)" lualatex \
 		--output-directory=build \
 		--interaction=nonstopmode \

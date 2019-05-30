@@ -1,5 +1,42 @@
-\section{Einleitung}
+\section{Zielsetzung}
+Das Ziel des Versuches "Messungen von Materie-Antimaterie-Unterschieden mit dem LHCb Experiment" ist die Untersuchung von Materie-Antimaterie-Asymmetrien von Dreikörperzerfällen des B-Mesons. Die Daten werden hierbei vom LHCb-Experiment zur Verfügung gestellt. Im Laufe des Versuches wird ein Programm zur Selektion und Analyse der Messdaten geschrieben.
 
 \section{Theorie}
+Der Beginn von Raum, Zeit und Materie wird durch den Urknall festgelegt, in dessen Folge es zu ersten Strukturbildungen kommt.
+Hierbei werden Materie und Antimaterie in gleicher Menge erzeugt. Die Antimaterie besteht aus den sogenannten Antiteilchen, deren Eigenschaften zu denen der Teilchen gespiegelt sind. Wird ein Teilchen durch sein Antiteilchen ersetzt und zusätzlich alle Raumkoordinaten umgekehrt, ändert sich das Verhalten des Systems nicht. Dieser Zusammenhang wird als $CP$-Symmetrie bezeichnet, wobei $C$ die Ladungsumkehr und $P$ die Inversion der Raumkoordinaten beschreibt.
 
-\cite{anleitung}
+Messungen aus der Gegenwart weisen auf einen deutlichen Überschuss an Materie gegenüber der Antimaterie hin. Dieser Befund wird auch als Materie-Antimaterie-Asymmetrie bezeichnet. Ein zentraler Baustein zur Erklärung dieser Asymmetrie ist die Verletzung der $CP$-Symmetrie, die $CP$-Verletzung. Diese wird im Standardmodell der Elementarteilchenphysik (SM) durch die komplexe Phase der CKM-Matrix repräsentiert. Die CKM-Matrix beschreibt Zerfälle erster Ordnung der schwachen Wechselwirkung über ein $W$-Meson, wobei auch generationsübergreifende Übergänge erlaubt sind. 
+
+Der Effekt dieses Modelles ist allerdings sehr gering, sodass von weiteren unbekannten Quellen der $CP$-Verletzung ausgegangen wird. Ansätze für weitere Quellen können in den Theorien der Neuen Physik gefunden werden. Aus diesem Grunde sind Messungen der Materie-Antimaterie-Asymmetrie von zentraler Bedeutung für die Suche nach Neuer Physik.
+
+Dieser Aufgabe widmet sich unter anderem das LHCb-Experiment am Large Hadron Collider (LHC) der Europäischen Organisation für Kernforschung (CERN), auf welches im folgenden Kapitel näher eingegangen wird. Hierbei werden Zerfälle des $B$-Mesons zu drei Hadronen 
+\begin{align*}
+    B^{\pm} \rightarrow h^{\pm} h^{+} h^{-}
+\end{align*}
+analysiert, wobei das $B$-Meson sowohl in Pionen $\pi$ als auch in Kaonen $K$ zerfallen kann. Der Quarkinhalt der beteiligten Teilchen, sowie einige andere wesentliche Eigenschaften sind Tabelle \ref{tab:quarks} zu entnehmen. Im vorliegenden Versuch wird lediglich der Zerfall in drei Kaonen betrachtet, da die anderen Zerfallskanäle einen zu hohen Hintergrund besitzen. Der Zerfall kann sowohl direkt, als auch über über ein weiteres neutrales Teilchen stattfinden, welches als Zwischenresonanzen bezeichnet wird. Das $b$-Quark des $B$-Mesons geht hierbei bevorzugt in ein $c$-Quark über, wodurch als häufige Zwischenresonanzen das $D^0$, das $J/\Psi$ und das $\Chi_{c0}$ Teilchen ausgemacht werden können.
+
+Durch die Instabilität des $b$-Quarks hat das $B$-Meson eine relativ kurze Lebensdauer von $\tau \approx 10^{-12}\;\si{\second}$. Aus diesem Grund erfolgt die Identifikation des $B$-Mesons ausschließlich über die Sekundärteilchen. Eine wichtiges Merkmal zur Teilchenidentifikation ist hierbei die Energie-Impuls-Beziehung 
+\begin{align}
+    E^2 = p^2 + m^2
+    \label{eq:Epm}
+\end{align}
+der speziellen Relativitätstheorie, welche eine Beziehung zwischen Energie $E$, Impuls $p$ sowie der invarianten Masse $m$ eines Teilchens aufstellt. \cite{anleitung}, \cite{lhcbpublic}
+
+\begin{table}[ht]
+    \centering
+    \caption{Eigenschaften der zu untersuchenden Teilchen \cite{pdg}.}
+    \label{tab:quarks}
+    \sisetup{table-format=2.1}
+    \begin{tabular} { c c c }
+    \toprule
+    {Teilchen} & {Quarks} & {Masse [MeV/c$^2$]} \\
+    \midrule
+      B$^{+}$ & $\bar{\mathrm{b}}$u & 5279.32\\
+      K$^{+}$ & $\bar{\mathrm{s}}$u & 493.677 \\
+      D$^0$ & $\bar{\mathrm{u}}$c & 1864.83 \\
+      J/$\Psi$ & $\bar{\mathrm{c}}$c & 3096.90\\
+      $\Chi$$_{c0}$ & $\bar{\mathrm{c}}$c & 3414.71\\
+    \bottomrule
+    \end{tabular}
+    \end{table}
+
