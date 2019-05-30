@@ -16,24 +16,24 @@ plt.subplots_adjust(wspace=0.3, hspace=0.5)
 plt.plot(e_50/1e6*3.6, adc_50, color='darkblue')
 plt.xlabel(r'$Elektronenpuls\;[\mathrm{MeV}]$')
 plt.ylabel(r'$ADCC$')
-plt.title(r'Streifen 50')
+plt.title(r'Kanal 50')
 plt.subplot(2,2,2)
 plt.plot(e_70/1e6*3.6, adc_70, color='darkblue')
-plt.title(r'Streifen 70')
+plt.title(r'Kanal 70')
 plt.xlabel(r'$Elektronenpuls\;[\mathrm{MeV}]$')
 plt.ylabel(r'$ADCC$')
 plt.subplot(2,2,3)
 plt.plot(e_80/1e6*3.6, adc_80, color='darkblue')
-plt.title(r'Streifen 80')
+plt.title(r'Kanal 80')
 plt.xlabel(r'$Elektronenpuls\;[\mathrm{MeV}]$')
 plt.ylabel(r'$ADCC$')
 plt.subplot(2,2,4)
 plt.plot(e_90/1e6*3.6, adc_90, color='darkblue')
-plt.title(r'Streifen 90')
+plt.title(r'Kanal 90')
 plt.xlabel(r'$Elektronenpuls\;[\mathrm{MeV}]$')
 plt.ylabel(r'$ADCC$')
 plt.savefig('Kalib_Kanal_Plot.pdf')
-#plt.show()
+plt.show()
 plt.clf()
 
 #Vergleich 0V und U_dep
@@ -60,7 +60,7 @@ while i < e_50.size:
 #Regression nur im "linearen" Bereich-> kleinere Arrays
 i=0
 ctr =0
-while Counts_ganz[i]<240:
+while Counts_ganz[i]<250:
     ctr = ctr +1
     i=i+1
 
@@ -97,7 +97,6 @@ i=0
 while i < len(Counts):
     y[i]= poly(Counts[i], *params)
     i=i+1
-
 
 plt.plot(Counts, y, color='tomato', label='Regression')
 plt.legend()

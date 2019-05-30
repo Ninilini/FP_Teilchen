@@ -25,7 +25,7 @@ while i<21:
     i=i+1
  
 #Depletionszonendicken -> für Regression nur die Werte unterhalb der Deplationsspannung
-U_dep=61
+U_dep=100
 D=300e-6
 d=[0.0]*0
 U_kleinerUdep=[0.0]*0
@@ -77,7 +77,8 @@ print(error_62)
 #Plot
 plt.plot(U, CCEL_62, color='orange', label=r'Messwerte',marker='x', linestyle='')
 #plt.plot(U, CCEL_63, color='green', label=r'Streifen 63',marker='x', linestyle='')
-plt.axvline(x=U_dep, color='red', label=r'$U_\mathrm{Dep}$', linestyle='--')
+plt.axvline(x=61, color='red', label=r'$U_\mathrm{Dep, alt}$', linestyle='--')
+plt.axvline(x=100, color='forestgreen', label=r'$U_\mathrm{Dep, neu}$', linestyle='--')
 
 plt.plot(U_kleinerUdep, CCE(d, tiefe), color='darkblue', label=r'$Regression$')
 

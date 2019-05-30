@@ -31,7 +31,8 @@ Für eine effiziente Detektion von Strahlung muss der Sensor vollständig deplet
 
   Die Messwerte sind in Abbildung \ref{fig:UI-Kennlinie} graphisch dargestellt.
   Nähert sich die angelegte Spannung $U$ der Depletionsspannung $U_{\mathrm{Dep}}$, geht die Kennlinie in einen linearen Sättigungsverlauf über.
-	In diesem Bereich tragen lediglich Exzitonen aus thermischen Anregungen zum Leckstrom bei, da die ladungsträgerarme Zone über den gesamten Sensor ausgebreitet ist. Bei Spannungen unterhalb von $U_{\mathrm{Dep}}$ tragen zusätzlich freie Ladungsträger der Dotierungen zum Leckstrom bei. In diesem Übergang wird die Depletionsspannung auf einen Wert von
+  In diesem Bereich tragen lediglich Exzitonen aus thermischen Anregungen zum Leckstrom bei, da die ladungsträgerarme Zone über den gesamten Sensor ausgebreitet ist. Bei Spannungen unterhalb von $U_{\mathrm{Dep}}$ ist die Depletionszone schmaler, sodass auch freie Ladungsträger zum Leckstrom beitragen.
+  In diesem Übergang wird die Depletionsspannung auf einen Wert von
   \begin{align*}
     U_{\mathrm{Dep}} \approx \SI{61}{\volt}
   \end{align*}
@@ -39,7 +40,7 @@ Für eine effiziente Detektion von Strahlung muss der Sensor vollständig deplet
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.9\textwidth]{plots/Kennlinie_Laser.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/Kennlinie.pdf}
   \caption{Leckstrom $I$ in Abhängigkeit der angelegten Spannung $U$ für zwei Messreihen. Im Beginn des Plateus findet sich die abgeschätzte Depletionsspannung $U_{\mathrm{Dep}}$.}
   \label{fig:UI-Kennlinie}
 \end{figure}
@@ -56,7 +57,7 @@ Durch verschiedene Störquellen enthält das vom Detektor empfangene Signal ein 
 \end{figure}
 \FloatBarrier
 Die Pedestals weisen eine Schwankung um etwa 10 ADCC auf. Bei den Streifennummern 60 bis 100 fallen hierbei besonders niedrige Pedestalwerte ins Auge.
-Über alle Kanalnummern hinweg ist ein regelmäßiges Rauschsignal von bis zu 0.3 ADCC zu beobachten.
+Über alle Kanalnummern hinweg ist ein regelmäßiges Rauschsignal von bis zu 2 ADCC zu beobachten.
 
 Des Weiteren werden die Werte des Common-Mode-Shifts mittels Gleichung \eqref{eqn:18} berechnet. Die Verteilung der Werte ist in Abbildung \ref{fig:CommonModeShift} dargestellt. Da nach \cite{anleitung} eine Gaußverteilung der Werte um Null zu erwarten ist, wird die Varianz der Common-Mode-Shift-Verteilung ermittelt und eine entsprechende Gaußkurve in die Werte gelegt.
 \begin{figure}
@@ -72,8 +73,8 @@ Eine Korrektur des Untergrundes wird im Folgenden elektronisch durch ein \textit
 
 \subsection{Kalibration}
 \label{kap:Kalibration}
-Um aus den gemessenen ADCC einen Wert für die im Detektor deponierte Energie zu erhalten, ist eine Kalibrationsmessung nötig. Hierzu werden fest definierte Elektronenpulse an den Detektor gesendet und die jeweiligen ADCC aufgenommen.
-Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen diesbezüglich zu vermeiden, wird zunächst eine optimale Verzögerungszeit zwischen dem gesendeten Puls und der Auslese der Sensoren ermittelt. Zu diesem Zweck werden die ADCC in Abhängigkeit von der Verzögerungszeit aufgenommen, welche in Abbildung \ref{fig:Delay} zu erkennen sind. Die optimale Verzögerungszeit lässt sich an der Stelle ausmachen, wo eine maximale Anzahl an ADCC registriert wird. Dieses ist bei einem Zeitabstand von $t_{\mathrm{Delay}}=\SI{61}{\nano\second}$ der Fall.
+Um aus den gemessenen ADCC einen Wert für die im Detektor deponierte Energie zu erhalten, ist eine Kalibrationsmessung nötig. Hierzu werden fest definierte Elektronenpulse an den Auslesechip gesendet und die jeweiligen ADCC aufgenommen.
+Durch die Zuleitungen entstehen Verzögerungen der Signale. Um Fehlerquellen diesbezüglich zu vermeiden, wird zunächst eine optimale Verzögerungszeit zwischen dem gesendeten Puls und der Auslese der Streifen ermittelt. Zu diesem Zweck werden die ADCC in Abhängigkeit von der Verzögerungszeit aufgenommen, welche in Abbildung \ref{fig:Delay} zu erkennen sind. Die optimale Verzögerungszeit lässt sich an der Stelle ausmachen, wo eine maximale Anzahl an ADCC registriert wird. Dieses ist bei einem Zeitabstand von $t_{\mathrm{Delay}}=\SI{61}{\nano\second}$ der Fall.
 \begin{figure}
   \centering
   \includegraphics[width=0.55\textwidth]{plots/Delay.pdf}
@@ -85,18 +86,18 @@ Die Messdaten des \textit{Calibration Run} bei einer angelegten Spannung von $U=
 \begin{figure}
   \centering
   \includegraphics[width=0.55\textwidth]{plots/0V_80V_Vergleich.pdf}
-  \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für eine angelegte Spannung von $U=\SI{0}{\volt}$ und $U=U_{\mathrm{Dep}}$ des Streifen 60.}
+  \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für eine angelegte Spannung von $U=\SI{0}{\volt}$ und $U=U_{\mathrm{Dep}}$ des Kanal 60.}
   \label{fig:0V80V}
 \end{figure}
 \FloatBarrier
 \begin{figure}
   \centering
   \includegraphics[width=0.7\textwidth]{plots/Kalib_Kanal_Plot.pdf}
-  \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für die Streifen 50, 70, 80 und 90.}
+  \caption{ADCC des \textit{Calibration Run} in Abhängigkeit des Elektronenpulses für die Kanalnummern 50, 70, 80 und 90.}
   \label{fig:KanalPlot}
 \end{figure}
 \FloatBarrier
-Alle Kurven steigen zunächst an und gehen ab einen Elektronenpuls von etwa $\SI{0.5}{\electronvolt}$ in einen Sättigungsverlauf über. Der Sensor scheint somit lediglich im Bereich unterhalb $\SI{0.5}{\electronvolt}$ eine sinnvolle Energieauflösung zu haben.
+Alle Kurven zeigen zunächst einen linearen Verlauf und gehen ab einen Elektronenpuls von etwa $\SI{0.5}{M\electronvolt}$ in einen Sättigungsverlauf über. Der Sensor scheint somit lediglich im Bereich unterhalb $\SI{0.5}{M\electronvolt}$ eine Energieauflösung zu haben. Bei Energiedepositionen oberhalb dieses Bereiches werden unterschiedlichen Energiewerten denselben ADCC zugeordnet.
 Die einzelnen Kurven weisen kaum Abweichungen untereinander auf. Auch der Vergleich der ADCC-Verläufe bei unterschiedlichen Spannungen zeigt kaum Unterschiede. Es kann somit davon ausgegangen werden, dass die Kalibration unabhängig von der Vorspannung durchgeführt werden kann.
 
 Zum Finden der Umrechnungsfunktion zwischen ADCC und eintreffender Energie wird der Mittelwert der ADCC für einen festen Elektronenpuls über die fünf vermessenen Streifen ermittelt. Aufgrund der geringen Abweichungen der ADCC-Verläufe in den verschiedenen Kanälen wird der Fehler des Mittelwertes im Folgenden vernachlässigt. In Abbildung \ref{fig:Regression} sind die Energien der gesendeten Elektronenpulse gegen diese Mittelwerte aufgetragen. Zum Ermitteln des Zusammenhanges zwischen ADCC und Puls wird eine Regressionsrechnung durchgeführt. Ausgegangen wird hierbei von einem Polynom vierten Gerades der Form
@@ -107,11 +108,11 @@ Zum Finden der Umrechnungsfunktion zwischen ADCC und eintreffender Energie wird 
 In die Rechnung werden lediglich die Werte aus dem Bereich eingebunden, in dem ein direkter Zusammenhang der Größen ersichtlich ist. Im darauffolgenden Bereich knickt der Kurvenverlauf ab und scheint gegen einen unendlich hohen Wert zu streben. Hier ist eine eindeutige Zuweisung eines ADCC-Werts zu einem einzigen Pulswert nicht mehr möglich.
 Für die Parameter der Umrechnungsfunktion ergeben sich mittels \textit{curve\_fit} des Paketes \textit{scipy.optimize} die Werte
 \begin{align*}
-  a &= \SI{178 (8)e-6}{\electronvolt},\\
-  b &= (-0.059 \pm 0.004) \; \si{\electronvolt},\\
-  c &= \SI{79(7)}{\electronvolt},\\
-  d &= \SI{736(45)}{\electronvolt},\\
-  e &= \SI{2534(815)}{\electronvolt}.
+  a &= \SI{28 (1)e-5}{\electronvolt},\\
+  b &= (-0.107 \pm 0.007) \; \si{\electronvolt},\\
+  c &= \SI{14(1)}{\electronvolt},\\
+  d &= \SI{399(88)}{\electronvolt},\\
+  e &= \SI{6(2)}{k\electronvolt}.
 \end{align*}
 
 \begin{figure}
@@ -134,17 +135,17 @@ Zunächst muss erneut die optimale Verzögerungszeit zwischen Laserimpuls und Au
   \label{fig:Delay Laser}
 \end{figure}
 \FloatBarrier
-Um die Streifen zu ermitteln, welche vom Laser getroffen werden, wird die Intensität des Signales eines jeden Kanales in Abhängigkeit von der Laserposition in Abbildung \ref{fig:Position} dargestellt. Die Signalintensität wird in dieser Abbildung als Kreisgröße dargestellt, wobei ein größerer Kreis einem höheren Signal entspricht. Die Laserposition null entspricht hierbei der Startposition.
+Um die Streifen zu ermitteln, welche vom Laser getroffen werden, wird die Intensität des Signales eines jeden Kanales für jede Laserposition in Abbildung \ref{fig:Position} dargestellt. Die Laserposition null entspricht hierbei der Startposition und der Laser wird für jede weitere Position um $\SI{100}{\micro\meter}$ verschoben.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Position_Kanal_Signal_Plot.pdf}
-  \caption{Darstellung der ADCC für jeden Kanal in Abhängigkeit von der Laserposition. Ein größerer Kreis entspricht hierbei einer höheren Anzahl an ADCC.}
+  \caption{Darstellung der ADCC für jeden Kanal in Abhängigkeit von der Laserposition. Eine Laserposition entspricht einer Verschiebung um $\SI{100}{\micro\meter}$.}
   \label{fig:Position}
 \end{figure}
 \FloatBarrier
-Es ist eindeutig zu erkennen, dass die Kanalnummern 61 bis 81 von dem Laser getroffen werden.
+Es ist eindeutig zu erkennen, dass die Streifen 61 bis 81 von dem Laser getroffen werden.
 
-Der Abstand der Streifensensoren, auch \textit{pitch} genannt, kann über den Abstand der Signalmaxima zweier benachbarter Streifen ermittelt werden. Diese entstehen immer dann, wenn der Laser genau auf einen Sensor trifft. Für jeden Kanal der Nummern 61 bis 81 wird daher die Laserposition ermittelt, für die das Signal einen maximalen Wert annimmt. Diese Maximapositionen sind für jeden Kanal in Abbildung \ref{fig:Maxima} dargestellt.
+Der Abstand der Streifensensoren, auch \textit{pitch} genannt, kann über den Abstand der Signalmaxima zweier benachbarter Streifen ermittelt werden. Diese entstehen immer dann, wenn der Laser genau auf einen Streifen trifft. Für jeden Kanal der Nummern 61 bis 81 wird daher die Laserposition ermittelt, für die das Signal einen maximalen Wert annimmt. Diese Maximapositionen sind für jeden Kanal in Abbildung \ref{fig:Maxima} dargestellt.
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Maxima.pdf}
@@ -155,10 +156,18 @@ Der Abstand der Streifensensoren, auch \textit{pitch} genannt, kann über den Ab
 Für jeden Streifen wird anschließend der Abstand der Maximumposition zur Maximumposition des benachbarten Streifen ermittelt und anschließend der Mittelwert der Abstände gebildet.
 Somit kann die \textit{pitch} $p$ der Streifen zu
 \begin{align*}
-  b = \SI{15(2)}{\micro\metre}
+  b = \SI{155(25)}{\micro\metre}
 \end{align*}
 bestimmt werden.
-Solange der Laser einen Streifen trifft, wird ein Signal in diesem registriert. Über die Differenz der Maximumsposition zu der Position, an welcher das erste bzw. letzte Signal im Streifen zu erkennen ist, kann daher die Ausdehnung des Lasers auf dem Sensor ermittelt werden. Hierzu wird jeweils die Länge der ansteigenden und abfallenden Flanken jeder Kanalnummer bestimmt und anschließend über alle Flankenlängen gemittelt. Berücksichtigt werden hierbei Signale, deren ADCC größer als 1 sind. Es ergibt sich eine Laserausdehnung $d$ von
+Solange der Laser einen Streifen trifft, wird ein Signal in diesem registriert. Über die Differenz der Maximumsposition zu der Position, an welcher das erste bzw. letzte Signal im Streifen zu erkennen ist, kann daher die Ausdehnung des Lasers auf dem Sensor ermittelt werden. Hierzu wird jeweils die Länge der ansteigenden und abfallenden Flanken jeder Kanalnummer bestimmt und anschließend über alle Flankenlängen gemittelt. Das Verfahren ist beispielhaft für die Kanalnummer 65 in Abbildung \ref{fig:Flanke} dargestellt. Berücksichtigt werden hierbei Signale, deren ADCC größer als 1 sind. 
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{plots/Flanken.pdf}
+  \caption{ADCC in Abhängigkeit von der Laserposition für die Kanalnummer 65. Anhand der Differenz der Maximumsposition zu Start bzw. Endpunkt der Flanken, kann die Laserausdehnung ermittelt werden.}
+  \label{fig:Maxima}
+\end{figure}
+\FloatBarrier
+Es ergibt sich eine Laserausdehnung $d$ von
 \begin{align*}
   d = \SI{292(17)}{\micro\metre}.
 \end{align*}
@@ -170,14 +179,14 @@ In diesem Abschnitt wird die Ladungsansammlungseffizienz, CCE, bei Bestrahlung m
 Die in Kanal 62 aufgenommenen spannungsabhängigen ADCC werden auf den Sättigungswert normiert und in Abbildung \ref{fig:KennlinieLaser} gegen die angelegte Spannung aufgetragen. Es ergibt sich der bekannte Kennlinienverlauf. Im Übergang der Werte in den Sättigungsbereich kann erneut die Depletionsspannung abgeschätzt werden. Zum Vergleich ist in Abbildung \ref{fig:KennlinieLaser} die im Kapitel \ref{kap:Kennlinie} bestimmte Depletionsspannung dargestellt.
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/Kennlinie.pdf}
+  \includegraphics[width=0.8\textwidth]{plots/Kennlinie_Laser.pdf}
   \caption{In Gelb sind die Messwerte der ADCC in Abhängigkeit von der Vorspannung, in rot die bestimmte Depletionsspannung aus Kapitel \ref{kap:Kennlinie} und in blau die Regressionsfunktion zur Berechnung der Lasereindringtiefe zu erkennen.}
   \label{fig:KennlinieLaser}
 \end{figure}
 \FloatBarrier
 Die Eindringtiefe des Lasers kann über eine Regressionsrechnung von Gleichung \eqref{eqn:20} aus den Kennlinienwerten berechnet werden. Mittels der Funktion \textit{curve\_fit} von \textit{scipy.optimize} \cite{scipy} wird für die Eindringtiefe ein Wert von
 \begin{align*}
-   a= \SI{565(218)}{\micro\metre}
+   a= \SI{179(7)}{\micro\metre}
 \end{align*}
 ermittelt.
 
@@ -215,7 +224,8 @@ In Abbildung \ref{fig:hitmap} ist die Hitmap dargestellt, welche der Verteilung 
   \label{fig:hitmap}
 \end{figure}
 \FloatBarrier
-Um das Energiespektrum zu erhalten, werden die ADCC mit Hilfe der Kalibrierungsfunktion \eqref{eq:Kalib} in Energiewerte umgerechnet und für die einzelnen Cluster addiert. Da die Umrechnungsfunktion lediglich bis zu einem ADCC-Wert von etwa 240 gültig ist, werden Messwerte oberhalb dieser Grenze nicht weiter beachtet.
+Um das Energiespektrum zu erhalten, werden die ADCC mit Hilfe der Kalibrierungsfunktion \eqref{eq:Kalib} in Energiewerte umgerechnet und für die einzelnen Cluster addiert.
+% Da die Umrechnungsfunktion lediglich bis zu einem ADCC-Wert von etwa 240 gültig ist, werden Messwerte oberhalb dieser Grenze nicht weiter beachtet.
 Zusätzlich wird das Spektrum der ADCC dargestellt, wozu die Einträge pro Cluster lediglich addiert werden.
 Die Verteilungen sind in Abbildung \ref{fig:spektrumADCC} für die ADCC und in Abbildung \ref{fig:spektrumkeV} für die Energiewerte dargestellt.
 
@@ -236,10 +246,10 @@ Die Verteilungen sind in Abbildung \ref{fig:spektrumADCC} für die ADCC und in A
 
 Aus den Spektren wird ein Mittelwert von
 \begin{align*}
-  \bar{E} = \SI{88.65 \pm 0.04}{ADCC} = \SI{101.99 \pm 0.05}{\kilo\electronvolt}
+  \bar{E} = \SI{93.60 \pm 0.05}{ADCC} = \SI{103.53 \pm 0.06}{\kilo\electronvolt}
 \end{align*}
 bestimmt, während über das Verteilungsmaximum der MPV zu
 \begin{align*}
-  MPV =  \SI{77 \pm 0.5}{ADCC} = \SI{84.0 \pm 1.0}{\kilo\electronvolt}
+  MPV =  \SI{77 \pm 0.5}{ADCC} = \SI{86.0 \pm 1.0}{\kilo\electronvolt}
 \end{align*}
 ermittelt wird.

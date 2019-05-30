@@ -10,16 +10,16 @@ number_E=[0.0]*0
 size_Hfkt_u0=[0.0]*0
 number_Hfkt_u0=[0.0]*0
 
-#Nur die betrachten, die nicht null sind
-i=1
+
+i=0
 while i<128:
-    if size_Hfkt[i]!=0:
-        size_K.append(i)
+    #if size_Hfkt[i]!=0:
+        size_K.append(i+0.07)
         size_Hfkt_u0.append(size_Hfkt[i])
-    if number_Hfkt[i]!=0:
+    #if number_Hfkt[i]!=0:
         number_E.append(i)
         number_Hfkt_u0.append(number_Hfkt[i])
-    i=i+1
+        i=i+1
 
 plt.bar(size_K, size_Hfkt_u0 ,label=r'Clustergröße', edgecolor='maroon', color='white')
 plt.bar(number_E, number_Hfkt_u0, label=r'Cluster pro Event', edgecolor='forestgreen', color='white')
@@ -27,6 +27,7 @@ plt.bar(number_E, number_Hfkt_u0, label=r'Cluster pro Event', edgecolor='forestg
 plt.xlabel(r'$Anzahl$')
 plt.ylabel(r'$Häufigkeit$')
 plt.yscale('log')
+plt.xlim(-0.6, 16)
 plt.legend()
 plt.savefig('Cluster.pdf')
 plt.show()
