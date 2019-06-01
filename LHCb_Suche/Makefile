@@ -49,7 +49,7 @@ Protokoll.pdf: main.tex content/* header.tex lit.bib graphics tables | build
 		--output-directory=build \
 		--interaction=nonstopmode \
 		--halt-on-error \
-	main.tex|grep -B 12 -e'no output PDF file produced' -e'LuaTeX' --color=auto
+	main.tex |grep -B 12 -e'no output PDF file produced' -e'LuaTeX' --color=auto
 	@echo
 	@BIBINPUTS=build: biber build/main.bcf|grep -i -e'biber' -e'error' -e'warn' --color=auto
 	@echo
