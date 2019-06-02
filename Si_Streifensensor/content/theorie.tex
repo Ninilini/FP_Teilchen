@@ -1,14 +1,14 @@
 \section{Zielsetzung}
 \label{sec:Zielsetzung}
 
-Das Ziel dieses Versuches ist es, die Funktionsweise eines Silizium-Halbleiterdetektors und dessen Eigenschaften zu untersuchen. Dazu wird insbesondere ein Silizium-Streifensensor mit einem Laser und einer $\beta^{-}$-Quelle bestrahlt. Durch die Betrachtung der Ausleseelektronik und die Auswertung der genommenen Daten soll zudem ein Ausblick auf die Funktionsweise und die Arbeit an größeren Teilchendetektoren gegeben werden.
+Das Ziel dieses Versuches ist es, die Funktionsweise eines Silizium-Halbleiterdetektors und dessen Eigenschaften zu untersuchen. Dazu wird ein Silizium-Streifensensor mit einem Laser und einer $\beta^{-}$-Quelle bestrahlt. Durch die Betrachtung der Ausleseelektronik und die Auswertung der genommenen Daten soll zudem ein Ausblick auf die Funktionsweise und die Arbeit an größeren Teilchendetektoren gegeben werden.
 
 \section{Theorie}
 \label{sec:Theorie}
-\subsection{Aufbau eines Inneren Detektors}
+\subsection{Aufbau eines Inneren Detektors am Beispiel des ATLAS Detektors}
 
-Viele der großen teilchenphysikalischen Detektoren, wie z.B. der ATLAS-Detektor am LHC, besitzen einen sogennanten \textit{Tracking Detektor}. Dieser besteht meistens aus Silizium-Streifensensoren, mit denen sich sowohl die Spuren der ionisierenden Teilchen erfassen lassen, als auch die Bestimmung der Impulse dieser ermöglicht wird.\\
-Diese Detektorkomponenten werden nahe der Beampipe, in der die Ausgangsteilchen beschleunigt und zur Kollision gebracht werden, angebracht. Die erste Detektorlage bilden dabei die Pixel-Detektoren. Diese besitzen einen sehr ähnlichen Aufbau zu den Streifendetektoren, haben aufgrund ihrer kleineren Detektionsfläche jedoch eine wesentlich höhere örtliche Auflösung. Durch die hohen Produktionskosten werden um den Pixeldetektor die günstigeren Streifendetektoren in zueinander verdrehten Schichten gelegt, um die Spuren weiter verfolgen zu können. Die letzte Schicht bildet ein Übergangsstrahlungsspurdetektor, um die Krümmung der Teilchenspuren bei einem angelegten Magnetfeld zu erfassen und damit die Ladungsbestimmung des Teilchens zu ermöglichen. Das Magnetfeld beeinflusst dabei auch die Pixel- und Streifendetektoren. Im weiteren Schritt werden die Krümmungsradien der Teilchenspuren berechnet und daraus die Impulse bestimmt.
+Viele der großen teilchenphysikalischen Detektoren, wie z.B. der ATLAS-Detektor am LHC, besitzen einen sogennanten \textit{Tracking Detektor}. Dieser besteht unter anderem aus Silizium-Sensoren, mit denen sich sowohl die Spuren der ionisierenden Teilchen erfassen lassen, als auch die Bestimmung der Impulse dieser ermöglicht wird.\\
+Diese Detektorkomponenten werden nahe der Beampipe, in der die Ausgangsteilchen beschleunigt und zur Kollision gebracht werden, angebracht. Die erste Detektorlage bilden dabei die Pixel-Detektoren. Diese besitzen einen sehr ähnlichen Aufbau zu den Streifendetektoren, haben aufgrund ihrer kleineren Größe jedoch eine wesentlich höhere örtliche Auflösung. Durch die hohen Produktionskosten werden um den Pixeldetektor die günstigeren Streifendetektoren in zueinander verdrehten Schichten gelegt, um die Spuren weiter verfolgen zu können. Die letzte Schicht bildet ein Übergangsstrahlungsspurdetektor, dieser ermöglicht die Krümmung der Teilchenspuren bei einem angelegten Magnetfeld zu erfassen und damit die Ladungsbestimmung des Teilchens. Durch das Magnetfeld werden die Teilchenflugbahnen jedoch bereits in den Pixel- und Streifendetektoren gekrümmt wahr genommen. Im weiteren Schritt werden die Krümmungsradien der Teilchenspuren berechnet und daraus die Impulse bestimmt.
 
 \subsection{Halbleiter}
 \label{sec:Halbleiter-Theorie}
@@ -16,14 +16,14 @@ Halbleiter sind jene Materialien, die weder isolieren noch leiten. Das bedeutet,
 In diesem Versuch wird der Halbleiter Silizium verwendet. Dieser besitzt vier
 Valenzelektronen und eine typische Bandlücke von \SI{1.12}{\electronvolt} \cite{chemie}. Dabei ordnen sich die Siliziumatome in einer Diamantstruktur an, wodurch jedes Atom vier Nachbaratome besitzt, welche alle zur Bindung
 beitragen.\\
-Beim dem Übergang eines Elektrons in das Leitungsband wird es zu einem freien Elektron und hinterlässt einen positiv geladenen Atomrumpf. Diese positive Restladung wird \textit{Loch} genannt und als Quasiteilchen betrachtet. Trifft nun ein freies Elektron auf ein Loch, so kommt es zu einer Rekombination. Durch Anlegen einer äußeren Spannung lässt sich diese Rekombination verhindern und die Elektronen bewegen sich zu der Anode, Löcher hingegen zur Kathode. Somit kommt es zur Eigenleitung mit einer geringen Ladungträgerdichte.
-Durch Hinzufügen eines geeigneten Fremdatoms lässt sich die Leitfähigkeit verbessern. Es wird dabei zwischen p- und n-Typ Halbleitern unterschieden.
+Beim dem Übergang eines Elektrons in das Leitungsband wird es zu einem freien Elektron und hinterlässt einen positiv geladenen Atomrumpf. Diese positive Restladung wird \textit{Loch} genannt und als Quasiteilchen betrachtet. Trifft nun ein freies Elektron auf ein Loch, so kommt es zu einer Rekombination. Dieser Vorgang wird durch thermische Anregung hervorgerufen, um trotzdem eine geringe Ladungsträgerdichte zu erhalten, wird eine äußere Spannung angelegt. Durch diese lässt sich die Rekombination verhindern und die Elektronen bewegen sich zu der Anode, Löcher hingegen zur Kathode. Dadurch entsteht eine Ladungstrennung und man hat einen Elektronenüberschuss an der Anode und einen Mangel an der Kathode. Durch die Ladungstrennung und das dadurch entstehende elektrische Potential kommt es zur Eigenleitung.
+Durch das Hinzufügen von einem geeigneten Fremdatom lässt sich die Leitfähigkeit verbessern. Es wird dabei zwischen p- und n-Typ Halbleitern unterschieden.
 Bei p-Typ Halbleitern werden dem Material Akzeptoren hinzugefügt. Dies sind Fremdatome mit einer niedrigeren Anzahl an Valenzelektronen als die des Basisatoms. Dadurch fehlt in der Gitterstruktur zur kovalenten Bindung eine bindende negative Ladung und das Loch bewegt sich wie ein freier positiver Ladungsträger.
 Die n-Typ Halbleiter werden hingegen mit Donatoren verunreinigt. Diese zeichnen sich analog zu dem p-Typ dadurch aus, das ein Fremdatom in die Gitterstruktur eingebaut wird. Jedoch besitzt dieses ein Valenzelektron mehr und sorgt daher für eine zusätzliche negative Ladung.\\
-Durch Zusammenfügen einer p-dotierten mit einer n-dotierten Schicht innerhalb eines Halbleiters entsteht ein pn-Übergang. Durch den Potentialunterschied der verschieden geladenen Schichten entsteht eine sogennante Diffusionsspannung $U_\text{D}$, die zu einer Rekombination der Ladungsträger führt. Bei Detektoren wird an die p-Seite ein negatives Potential und an der n-Seite ein positives Potential angelegt. Dies sorgt dafür, dass sich die Ladungsträger zu der Anode/Kathode bewegen und am pn-Übergang eine ladungträgerarme Zone oder Depletionszone ausgebildet wird.
+Durch Zusammenfügen einer p-dotierten mit einer n-dotierten Schicht innerhalb eines Halbleiters entsteht ein pn-Übergang. Durch die verschieden geladenen Schichten entsteht ein Potentialunterschied mit dem eine sogennante Driftspannung $U_\text{D}$einhergeht, die zu einer Rekombination der Ladungsträger führt. Bei Detektoren wird an die p-Seite ein negatives Potential und an der n-Seite ein positives Potential angelegt. Dies sorgt dafür, dass sich die Ladungsträger zu der Anode/Kathode bewegen und am pn-Übergang eine ladungträgerarme Zone oder Depletionszone ausgebildet wird.
 Bei der sogenannten Depletionsspannung $U_\text{Dep}$ ist der Halbleiter zwischen den Kontakten schließlich vollständig depletiert.
 Die Depletionsspannung liegt typischerweise wesentlich höher als die
-Diffusionsspannung ($U \gg U_\text{D}$), sodass diese vernachlässigt werden kann. Die räumliche Ausbreitung der Depletionszone hängt von der angelegten Vorspannung und der effektiven Dotierungskonzentration
+Driftspannung ($U \gg U_\text{D}$), sodass diese vernachlässigt werden kann. Die räumliche Ausbreitung der Depletionszone hängt von der angelegten Vorspannung und der effektiven Dotierungskonzentration
 $N_\text{eff}$
 \begin{equation}
   N_\text{eff} = \frac{N_\text{D}N_\text{A}}{N_\text{D}+N_\text{A}}
@@ -45,13 +45,13 @@ Liegt die angelegte Spannung unterhalb $U_\text{Dep}$ gilt für die Dicke der De
 \end{align}
 Ist die angelegte Spannung allerdings in derselben Größenordnung wie die Depletionsspannung, so folgt für die Dicke der Depletionszone
  \begin{align*}
-   d_\text{c}(U) &= D \hspace{3cm}\text{für } U \le U_\text{Dep}.
+   d_\text{c}(U) &= D \hspace{3cm}\text{für } U \geq U_\text{Dep}.
  \end{align*}
 
 Um einen Si-Sensor sinnvoll als Detektor einsetzen zu können, sollte er vollständig depletiert sein. Denn durch die entstandende Depletionszone misst die Ausleseelektronik im Idealfall nur dann einen Strom, wenn ein Teilchen durch den Sensor fliegt und durch die deponierte Energie ein Ladungsfluss entsteht.
 
 \subsection{Leckströme}
-Der Leckstrom setzt sich aus verschiedenen Komponenten zusammen. Ein Anteil ist der Diffusionsstrom, der durch das Driften von Ladungsträgern im nicht-depletierten Bereich des Sensors erzeugt wird. Der Leckstrom wird durch den \textit{bulk generation}-Strom dominiert, welcher durch Elektronlochpaarproduktion in der Depletionszone erzeugt wird. Der Leckstrom ist linear zum Teilchenfluss $\Phi$, welcher durch den Equivalenzfluss $\Phi_{eq} = \kappa \cdot \Phi$ normiert ist. $\kappa$ ist der individuelle Härtefaktor, der genutzt wird, weil verschiedene Teilchenarten verschiedene Effekte auf die Kristallstruktur des Sensors und damit auch den Leckstrom ausüben.  Der Strom ist zudem linear zu dem Volumen $V_{Dep}$ der Depletionszone und proportional zu einem Faktor $\alpha$, welcher als strombezogene Schadensrate bezeichnet wird.
+Der Leckstrom für einen unbestrahlten Sensor wird durch die thermische Anregung von Elektronen aus dem Valenzband in das Leitungsband generiert. Die entstehenden frien Elektronen und Löcher können sich frei bewegen und führen dadurch zu einem Ladungstrom im Sensor, der sich wiederum durch einen kontinuierlichen Lecktrom bemerkbar macht. Für bestrahlte Sensoren setzt sich der Leckstrom aus verschiedenen Komponenten zusammen. Ein Anteil ist der Diffusionsstrom, der durch das Driften von Ladungsträgern im nicht-depletierten Bereich des Sensors erzeugt wird, analog zu den unbestrahlten Snesoren. Der Leckstrom wird durch den \textit{bulk generation}-Strom dominiert, welcher durch Elektronlochpaarproduktion in der Depletionszone erzeugt wird. Diese Elektronenlochpaare werden erzeugt, wenn ein Teilchen durch den Sensor fliegt und dabei Energie deponiert. Der Leckstrom ist linear zum Teilchenfluss $\Phi$, welcher durch den Equivalenzfluss $\Phi_{eq} = \kappa \cdot \Phi$ normiert ist. $\kappa$ ist der individuelle Härtefaktor, der genutzt wird, weil verschiedene Teilchenarten verschiedene Effekte auf die Kristallstruktur des Sensors und damit auch den Leckstrom ausüben.  Der Strom ist zudem linear zu dem Volumen $V_{Dep}$ der Depletionszone und proportional zu einem Faktor $\alpha$, welcher als strombezogene Schadensrate bezeichnet wird.
 \begin{equation}
 	I = \alpha \cdot \Phi_{eq} \cdot V
 \end{equation}
@@ -62,7 +62,7 @@ In diesem Versuch wird eine ${90}^\text{Sr}$-Quelle verwendet. Diese ist ein rei
   {90}^\text{Sr} \stackrel{\beta^{-}}{\longrightarrow} {90}^\text{Y}
   \stackrel{\beta^{-}}{\longrightarrow} {90}^\text{Zr},
 \end{equation*}
-wobei sowohl Yttrium als auch Zirkonium nahezu reine $\beta^{-}$-Strahler sind. Strontium besitzt eine Halbwertszeit von $T_{\sfrac{1}{2}} = 28$ Jahren $328$ Tagen und zerfällt danach in Yttrium, welches eine Halbwertszeit von $T_{\sfrac{1}{2}} = 2$ Tagen und $16$ Stunden aufweist \cite{periodensystem}. Dabei zerfallen bei einem $\beta^{-}$-Zerfall Neutronen wie folgt in Protonen:
+wobei sowohl Yttrium als auch Strontium nahezu reine $\beta^{-}$-Strahler sind. Deshalb wird ${90}^\text{Sr}$ als Quelle verwendet, da ein relativ reiner Teilchenstrom aus einer Sorte erreicht wird. Strontium besitzt eine Halbwertszeit von $T_{\sfrac{1}{2}} = 28$ Jahren $328$ Tagen und zerfällt danach in Yttrium, welches eine Halbwertszeit von $T_{\sfrac{1}{2}} = 2$ Tagen und $16$ Stunden aufweist \cite{periodensystem}. Dabei zerfallen bei einem $\beta^{-}$-Zerfall Neutronen wie folgt in Protonen:
 \begin{equation*}
   \text{n} \rightarrow \text{p} + \text{e}^{-} + \overline{\nu_\text{e}}.
 \end{equation*}
@@ -73,7 +73,7 @@ Die Energieverlustcharakteristika von Teilchen legen fest wie sie mit der durchq
 
 Bewegt sich ein Elektron in Materie, so führt dieses elastische Stöße mit Kernen und Elektronen durch. Die Energie der durch den $\beta^{-}$-Zerfall induzierten Elektronen ist in diesem Experiment nicht groß genug, um Effekte wie die Bremsstrahlung, die inelastischen Stöße und der Cherenkov-Strahlung auszulösen. Daher werden diese Effekte hier vernachlässigt.
 
-Ein Eindringen von Elektronen in einen Halbleiter-Detektor wird durch ihre Energieabgabe innerhalb des Detektors identifiziert. Dabei lässt sich die durchgeschnittliche Energiedisposition durch eine modifizierte Bethe-Bloch-Gleichung beschreiben.
+Die Energieabgabe eines Elektrons in einem Halbleiter-Detektor unterscheidet sich somit von schweren geladenen Teilchen. Dabei lässt sich die durchgeschnittliche Energiedisposition durch eine modifizierte Bethe-Bloch-Gleichung beschreiben.
 \begin{equation*}
   -\frac{\text{d}E}{\text{d}x} =
   2\pi \text{N}_\text{a} \text{m}_\text{e} \text{c}\rho \frac{\text{Z}}{\text{A}}\frac{1}{\beta^2}
@@ -86,7 +86,7 @@ In dieser Abwandlung der eigentlichen Bethe-Bloch-Gleichung für Elektronen mit 
   \text{F}(\tau) = 1 - \beta^2 + \frac{\tau^2\/8 - (2\text{r}_e + 1) \ln2}{(\tau + 1)^2}
   \hspace{2cm}\text{mit } \tau = \gamma - 1
 \end{equation*}
-In der Abbildung \ref{fig:tab} ist eine Tabelle der einzelnen Bestandteile der modifizierten Bethe-Bloch-Gleichung dargestellt.
+In der Abbildung \ref{fig:tab} ist eine Tabelle der einzelnen Bestandteile der modifizierten Bethe-Bloch-Gleichung dargestellt. Die Elektronen lassen sich jedoch in einem späteren Detektor nicht ausschließlich mit der Energiedeposition in dem inner Tracker identifizieren, dafür werden auch die verschiedenen Kalorimeter gebraucht.
 
 \begin{figure}[htb]
   \centering
@@ -103,7 +103,7 @@ Der hier verwendete Detektor erfüllt diese Bedingung bei einer Dicke von
 \SI{300}{\micro\meter} jedoch nicht. Es gibt nicht genügend Wechselwirkungen
 innerhalb des Detektors, um den zentralen Grenzwertsatz anwenden zu können.
 Daher entspricht die Verteilung eher einer asymmetrischen Landau-Funktion.
-Dies resultiert daraus, dass das eindringende Primärelektron beim Durchqueren des depletierten Sensors entlang seiner Spur Elektron-Loch-Paare produziert. Das Elektron wird ionisiert und kann mit einem stärker gebundenem Elektron als die Si-Valenzelektronen interagieren. Dieses Elektron wiederum hat oftmals eine höhere kinetische Energie und kann dadurch eine Sekundärionisation hervorrufen. Diese führt zu der asymmetrischen Form des Energiespektrums.\\
+Dies resultiert daraus, dass das eindringende Primärelektron beim Durchqueren des depletierten Sensors entlang seiner Spur Elektron-Loch-Paare produziert. Das neu entstandende Elektron besitzt oft eine höhere Energie und kann mit einem stärker gebundenem Elektron als die Si-Valenzelektronen interagieren. Dieses Elektron wiederum hat oftmals eine höhere kinetische Energie und kann dadurch eine Sekundärionisation hervorrufen. Diese führt zu der asymmetrischen Form des Energiespektrums.\\
 Da die Energie der Elektronen des $\beta$-Zerfalls durch eine Verteilung beschrieben werden können, beschreibt das Spektrum der deponierten Energie am besten eine Faltung zwischen einer Gauß- und einer Landau-Funktion. Diese Verteilung ist in Abbildung \ref{fig:faltung} dargestellt.
 \begin{figure}[htb]
   \centering
@@ -132,7 +132,7 @@ Wird nun eine Nullhypothese für das Signal angesetzt (Messung ohne Quelle), so 
   \text{Noise}(i) = \sqrt{ \frac{1}{N-1} \sum_{k=1}^N \left(\text{ADC}(i,k) - \text{P} (i) - \text{D}(k)\right)^2 }
   \label{eqn:16}
 \end{equation}
-Bei einer Aufnahme von Daten wird ein \textit{Signal-to-Noise-Cut} durchgeführt, um das Rauschen so gut wie möglich herausfiltern zu können. Dies geschieht dadurch, dass ein Verhältnis zwischen den gemessenen Signalen des $\beta$-Strahlers und dem Rauschen der Streifen gebildet wird. Ist dieses Verhältnis größer als 5, so wird ein Trigger gesetzt und die Daten werden zur Messung herangezogen. Bleibt das Verhältnis jedoch unter 5, so werden die Daten verworfen.
+Bei einer Aufnahme von Daten wird ein \textit{Signal-to-Noise-Cut} durchgeführt, um das Rauschen so gut wie möglich herausfiltern zu können. Dies geschieht dadurch, dass ein Verhältnis zwischen den gemessenen Signalen des $\beta$-Strahlers und dem Rauschen der Streifen gebildet wird. Ist dieses Verhältnis größer als 5, so wird ein externer Trigger gesetzt und die Daten werden zur Messung herangezogen. Bleibt das Verhältnis jedoch unter 5, so werden die Daten verworfen.
 
 % \subsection{Clustering}
 % \label{sec:Clustering}
