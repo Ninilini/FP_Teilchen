@@ -164,7 +164,7 @@ Solange der Laser einen Streifen trifft, wird ein Signal in diesem registriert. 
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Flanken.pdf}
   \caption{ADCC in Abhängigkeit von der Laserposition für die Kanalnummer 65. Anhand der Differenz der Maximumsposition zu Start bzw. Endpunkt der Flanken, kann die Laserausdehnung ermittelt werden.}
-  \label{fig:Maxima}
+  \label{fig:Flanke}
 \end{figure}
 \FloatBarrier
 Es ergibt sich eine Laserausdehnung $d$ von
@@ -224,8 +224,8 @@ In Abbildung \ref{fig:hitmap} ist die Hitmap dargestellt, welche der Verteilung 
   \label{fig:hitmap}
 \end{figure}
 \FloatBarrier
-Um das Energiespektrum zu erhalten, werden die ADCC mit Hilfe der Kalibrierungsfunktion \eqref{eq:Kalib} in Energiewerte umgerechnet und für die einzelnen Cluster addiert.
-% Da die Umrechnungsfunktion lediglich bis zu einem ADCC-Wert von etwa 240 gültig ist, werden Messwerte oberhalb dieser Grenze nicht weiter beachtet.
+Um das Energiespektrum zu erhalten, werden die ADCC mit Hilfe der Kalibrierungsfunktion \eqref{eq:Kalib} in Energiewerte umgerechnet und anschließend für die einzelnen Cluster addiert.
+Da die Umrechnungsfunktion lediglich bis zu einem ADCC-Wert von etwa 250 gültig ist, werden Messwerte oberhalb dieser Grenze nicht weiter beachtet.
 Zusätzlich wird das Spektrum der ADCC dargestellt, wozu die Einträge pro Cluster lediglich addiert werden.
 Die Verteilungen sind in Abbildung \ref{fig:spektrumADCC} für die ADCC und in Abbildung \ref{fig:spektrumkeV} für die Energiewerte dargestellt.
 
@@ -246,10 +246,10 @@ Die Verteilungen sind in Abbildung \ref{fig:spektrumADCC} für die ADCC und in A
 
 Aus den Spektren wird ein Mittelwert von
 \begin{align*}
-  \bar{E} = \SI{93.60 \pm 0.05}{ADCC} = \SI{103.53 \pm 0.06}{\kilo\electronvolt}
+  \bar{E} = \SI{89.12 \pm 0.04}{ADCC} = \SI{102.67 \pm 0.06}{\kilo\electronvolt}
 \end{align*}
 bestimmt, während über das Verteilungsmaximum der MPV zu
 \begin{align*}
-  MPV =  \SI{77 \pm 0.5}{ADCC} = \SI{86.0 \pm 1.0}{\kilo\electronvolt}
+  MPV =  \SI{77 \pm 0.5}{ADCC} = \SI{84.0 \pm 1.0}{\kilo\electronvolt}
 \end{align*}
 ermittelt wird.
