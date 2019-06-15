@@ -35,6 +35,7 @@ Von diesem Punkt aus kann nun der Schätzer $\hat{\vec{f}}$ bestimmt werden. Die
 Die Naive SVD-Entfaltung bildet die einfachste, aber auch fehleranfälligste Möglichkeit einer Entfaltung. Um an die wahre Verteilung $\vec{f}$ zu kommen, wird die Migrationsmatrix des Energieschätzers $\pmb{A}$ invertriert. Bei nicht quadratischen Matrizen wird dazu die Moore-Penrose-Pseudoinverse gebildet.\\
 \begin{align}
 	\hat{\vec{f}} = \pmb{A}^{+}(\vec{g} - \vec{b})
+	\label{eqn:NSVD}
 \end{align}
 Diese Lösung ist äquivalent zur Methode der kleinsten Quadrate.
 \subsubsection{Poisson-Likelihood-Enfaltung}
