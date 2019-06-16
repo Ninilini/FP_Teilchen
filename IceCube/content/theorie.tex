@@ -23,3 +23,57 @@ Das IceCube-Experiment wird zur Detektion von hochenergetischen Neutrinos und My
 Zu Teilchendetektion wird sich dabei das Prinzip von Tscherenkov-Licht zu nutze gemacht. Dieses wird emittiert, wenn sich ein hochenergetisches, geladenes Teilchen überlichtschnell im Medium bewegt. Die Lichtgeschwindigkeit im Medium ist $c=\frac{c_{0}}{n}$, wobei $n$ dem Brechungsindex des Mediums entspricht und $c_{0}$ der Vakuumlichtgeschwindigkeit. Dieses Tscherenkov-Licht kann mit 5160 Photoelektronenvervielfachern aufgenommen werden, die auf insgesamt 86 Kabel verteilt sind.\\
 Diese bilden grundsätzlich das In-Ice-Array, das eine Energieschwelle von $\SI{100}{\giga\electronvolt}$ besitzt. Der DeepCore besteht aus 7 Kabeln, die dichter zusammenliegen und eine höhere Photomultiplierdichte besitzen. Daher bildet er die Niederenergieerweiterung des Detektors und hat eine Energieschwelle von bereits $\SI{10}{\giga\electronvolt}$.\\
 Das IceTop ist ein Luftschauer-Experiment aus lichtdichten Eistanks. Es dient mithilfe von Tscherenkov-Licht sowohl zur Untersuchung von kosmischer Strahlung als auch als Veto für das In-Ice-Array. So können zum Beispiel atmosphärische Teilchen von Neutrinos, die die Erde durchquert haben, unterschieden werden.\\
+Neutrinos lassen sich bei IceCube über die Sekundärteilchen aus schwacher Wechselwirkung detektieren. Dabei existieren geladene Ströme (\textit{engl.: charged currents}, CC) und neutrale Ströme (\textit{engl.: neutral currents}, NC), die wie folgt aussehen:\\
+\begin{align}
+	\nu_{l}(\bar{\nu_{l}}) + A \to l^{\mp} + X (\text{CC})\\
+	\nu_{l} + A \to \nu_{l} + X (\text{NC})
+\end{align}
+Elektronen produzierten auf Grund ihrer geringen Energie einen nahezu sphärischen Schauer im Detektor. Ähnlich verhält es sich für Tau-Leptonen, die auf Grund ihrer kurzen Lebensdauer auch nur eine geringe Reichweite haben, bevor sie zerfallen. Bei nicht zu hohen Energien ähnelt die Signatur somit stark der von Elektronen. \\
+Myonen hingegen haben eine lange Spur, dies liegt an ihrem deutlich langsarem Energieverlust und der daraus resultierenden großen Reichweite. Das Tscherenkov-Licht der Myon selbst ist jedoch zur schwach zur Detektion. Sie werden durch die Schauer der emittierten Photonen und Elektron-Positron-Paare detektiert.\\
+Bei den schwachen Wechselwirkungen über neutrale Ströme werden die Kaskaden ausgelöst durch die hadronischen Sekundärteilchen beobachtet. Diese ähneln stark der durch Elektronen ausgelösten Schauer.
+
+\subsection{Messungen von Neutrinos mit IceCube}
+Bei der Messung von Ereignissen wird grundsätzlich zwischen zwei verschiedenen Arten unterschieden. Zum einen den sogenannten \textit{starting events}, die erst im Detektor selber entstehen und zum anderen, den Myon-Ereignissen, die den gesamten Detektor durchqueren. Der Vorteil dabei ist, dass diese zwar im Vergleich zu den \textit{starting events} eine schlechtere Energieauflösung besitzen, aber eine deutlich bessere Winkelauflösung. Die Selektion bei den beiden Ereignisarten unterscheidet sich jedoch grundlegend.\\
+Die Analysetechnik bei den \textit{starting events} nutzt den äußeren Abschnitt des Detektors als Veto, um atmosphärische Myonen zu verwerfen. Da alle Neutrinoflavour gleicher Maßen beitragen, stammen ein Großteil der Ereignisse aus Kaskaden von Wechselwickungen über den neutralen Strom oder Elektron- und Tauechselwirkungen über den geladenen Strom.\\
+Bei den durchquerenden Myon-Ereignissen kann das effektive Volumen für die Analyse erweitert werden, indem die Erde als Abschirmung von atmosphärischen Myonen genutzt wird. Myonen, die von unterhalb des Detektors kommen, stammen somit aus Neutrinowechselwirkungen. Somit ermöglicht ein Schnitt im Zenitwinkel das Trennen von atmosphärischen Myonen und Myonen aus Neutrinowechselwirkungen. Ein Teil der Richtungsrekonstruktion verläuft jedoch fehlerhaft, sodass der Schnitt auf den rekonstruierten Zenitwinkel nur eine Verbesserung vom Signal-Untergrund-Verhältnis von $1:10^{6}$ auf $1:10^{3}$ bringt. Um das Signal-Untergrund-Verhältnis weiter zu verbessern, werden Methoden des Maschinellen Lernens verwendet.
+
+\subsection{Signal-Untergrund-Trennung mit Maschinellen Lernen}
+\label{Signal}
+Um Methoden des Maschinellen Lernens für die Signal-Untergrund-Trennung genutzt werden können. Müssen diese zunächst auf Monte-Carlo-Testdatensätze angewendet werden. Dazu werden zunächst Signal und Untergrund getrennt von einander simuliert. Um ein möglichst einheitliches Bild für beide Datensätze zu erhalten, werden alle Attribute, die nur in einem der beiden Datensätze vorkommen, entfernt. Zudem werden alle Monte-Carlo-Wahrheiten, Eventidentifikationsnummern und Gewichte entfernt. Um fehlerhafte Ergebnisse zu verhindern, müssen zudem Werte, die nicht als Zahl identifiziert werden können, wie zum Beispiel NaN oder Inf entfernt werden. Trifft das auf unter \SI{30}{\percent} der Werte eines Attributes zu, bietet es sich an, diese durch eine Alternative Zahl, die nicht im Wertebereich des Attributes liegt zu ersetzen. Andernfalls sollte auch dieses Attribut verworfen werden. Zudem müssen Signal und Untergrund mit einem binären Label von einander unterschieden werden.\\
+Da solche Datensätze oft eine Vielzahl an Attributen besitzen, bei denen zudem der Informationsgehalt in Bezug auf die Zielklasse sehr stark schwankt, bietet es sich an zuvor Attributsselektion durchzuführen. Damit wird die Laufzeit stark verringert. Ein mögliches Verfahren zu Attributsselektion ist die mRMR-Selektion. Diese betrachtet auch Korrelationen der Variablen und ist besonders interessant beim verwenden von multivariaten Lernen, da auch diese die Korrelation verschiedenen Variablen berücksichtigt.
+\subsubsection{mRMR-Auswahl}
+Die mRMR-Auswahl (\textit{engl.: minimum Redundancy, Maximum Relevance}) basiert auf der Betrachtung der Wahrscheinlichkeitsverteilungen der zur Verfügung stehend Varaiblen. Die mRMR-Selektion wählt dabei die Attribute iterativ aus, indem sie nach welchen sucht, die möglichst stark mit der Zielvariable, aber möglichst gering untereinander korreliert sind. Dabei nutzt sie unter anderem den gemeinsamen Informationsgehalt $I(x,y)$ zweier Variablen $x,y$:
+\begin{align}
+	I(x,y) = \int p(x,y) \log\left(\frac{p(x,y)}{p(x)p(y)}\right)\text{d}x\text{d}y.
+\end{align}
+Wobei $p(x), p(y)$ und $p(x,y)$ die Wahrscheinlichkeitsverteilungen der betreffenden Variablen sind. Die Zielvariable des vorliegenden Versuchs ist dabei die Klasse des Ereignisses, also ob es sich um ein Signal- oder Untergrundereignis handelt.
+\subsubsection{Verschiedene Lernalgorithmen}
+Ein Lernalgorithmus ist der Naive-Bayes-Lerner, der auf dem Bayes'schen Theorem über bedingte Wahrscheinlichkeiten basiert:
+\begin{align}
+	p(A|B) = \frac{p(B|A)p(A)}{p(B)}
+\end{align}
+basiert. Wenn $A$ die Klassenzugehörigkeit ($A$ Signal, $\bar{A}$ Untergrund) bezeichnet und $B$ ein Attribut ist, dann gilt für den Audruck
+\begin{align}
+	Q = \frac{p(A|B)}{p(\bar{A}|B)} = \frac{p(B|A)p(A)}{p(B|\bar{A})p(\bar{A})}
+\end{align}
+dass er einen Wert von mehr als 1 annimmt, wenn das Ereignis mit größerer Wahrscheinlichkeit Signal und nicht Untergrund ist. Unter der naiven Annahme, dass Attribute nur von der Klassenzugehörigkeit abhängen, ergibt die $Q$ mit mehreren Attributen zu:\\
+\begin{align}
+	Q = \frac{p(A|B_{1},...,B_{n})}{p(\bar{A}|B_{1},...,B_{n})} = \prod_{i=1}^{n} \frac{p(B_{i}|A)}{p(B_{i}|\bar{A})}
+\end{align}
+Der kNN-Klassifikator (\textbf{k} \textbf{N}ächste \textbf{N}achbarn) klassifiziert die Klasse eines Ereignisses, indem er die $k$ umliegenden Ereignisse betrachtet und das Ereignis anhand des Mittelwerts der umliegenden Ereignisse klassifiziert.\\
+Ein dritter Klassifikator ist der Random Forest, der auf binären Entscheidungsbäumen basiert. Dabei wird an jedem Knoten eines Entscheidungsbaum ein Schnitt angewendet und die entstehenden Teilmengen werden auf die beiden Äste aufgeteilt. Dieses Verfahren wird entweder bis zu einer gewissen Tiefe fortgeführt oder bis die Blätter nur Ereignisse der selben Klasse erhalten. Um die Effekte des Übertrainierens zu minimieren, kann über eine Menge unterschiedlicher Entscheidungsbäume gemittelt werden. Eine mögliche Strategie dafür ist, dass jeder Baum nur auf einer Teilmenge des Trainingsdatensatz trainiert wird und die $k$ Attribute für den Schnitt an jedem Knoten zufällig gewählt werden. Die Confidence $c$, also Entscheidung des Random Forst ist das arithmetische Mittel über die Entscheidungen $P_{i}$ der $N$ Einzelbäume.
+\begin{align}
+	c = \frac{1}{N} \sum_{i=1}^{N}P_{i} \; \text{mit} P_{i} \in \{0,1\}
+\end{align}
+\subsubsection{Qualitätsparameter}
+Die Güte einer Klassifikation lässt sich mit den Qualitätsparametern bewerten. Diese basierten auf der Anzahl der korrekt als Signal (\textit{tp, true positiv}) bzw. Untergrund (\textit{tn, true negativ}) und der fälschlicher Weise als Signal (\textit{fp, false positiv}) bze. Untergrund (\textit{fn, false negativ}) klassifizierten Ereignisse. Es lassen sich die beiden Parameter:
+\begin{align}
+	\text{Reinheit} p &= \frac{tp}{tp+fp}\\
+	\text{Effizienz} r &= \frac{tp}{tp+fn}
+\end{align}
+bestimmen. Wichtig ist dabei, dass je nach Ziel der Analyse einer der beiden Parameter optimiert wird. Ist zum Beispiel eine sehr reine Trennung sehr wichtig, aber es ist nicht wichtig für statistische Untersuchungen eine gewisse Anzahl an Ereignissen zu haben, bietet es sich an die Reinheit zu maximieren.
+\subsubsection{Kreuzvalidierung}
+Die Kreuzvalidierung ist ein Werkzeug, dass es ermöglicht einen Fehler auf die Qualitätsparameter anzugeben. Dieser entsteht auf Grund von statistischen Schwankungen im Trainingsdatensatz. Dazu word der Trainingsdatensatz in $n$ Datensätze aufgeteilt. Von diesen Teildatensätzen werden $n-1$ zum trainieren des Lerners verwendet. Mit dem $n$-ten Datensatz wird schließlich die Klassifikation mit dem erhaltenden Lernen aufgestellt. Dieses Verfahren wird $n$-mal durchgeführt, sodass jeder Datensatz einmal Testdatensatz war. Aus den $n$ Qualitätsparametern lässt sich schließlich ein Mittelwert und der zugehörige Fehler auf diesen berechnen.
+\subsubsection{Monte-Carlo-Simulationen}
+Kann ein Experiment gar nicht oder nur sehr aufwendig analytisch beschrieben werden, bietet die Verwendung von Monte-Carlo-Simulationen eine Alternative. Dabei wird ein Experiment unter Verwenung von Zufallszahlen simuliert. \\
+In der Teilchenphysik werden sie häufig zum bereitstellen von Pseudodaten genutzt. Da die Eigenschaften der Signal- und Untergrundereignisse bekannt ist, bieten sie sich zum Beispiel zur Klassifizierung von Rekonstruktionsalgorithmen an. Analog können mir ihnen aber auch Analysen zur Signal-Untergrund-Trennung durchgeführt werden. Dieses Vorgehen wird in diesem Versuch durchgeführt.
