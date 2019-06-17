@@ -5,4 +5,4 @@
 !Si_Streifensensor/plots/*.pdf
 *.hdf5
 Szintillierende_Fasern/data/Simulation/*.txt
-
+*.csv
