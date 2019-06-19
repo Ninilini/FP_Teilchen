@@ -40,13 +40,26 @@ Bei den durchquerenden Myon-Ereignissen kann das effektive Volumen für die Anal
 \subsection{Signal-Untergrund-Trennung mit Maschinellen Lernen}
 \label{Signal}
 Um Methoden des Maschinellen Lernens für die Signal-Untergrund-Trennung genutzt werden können. Müssen diese zunächst auf Monte-Carlo-Testdatensätze angewendet werden. Dazu werden zunächst Signal und Untergrund getrennt von einander simuliert. Um ein möglichst einheitliches Bild für beide Datensätze zu erhalten, werden alle Attribute, die nur in einem der beiden Datensätze vorkommen, entfernt. Zudem werden alle Monte-Carlo-Wahrheiten, Eventidentifikationsnummern und Gewichte entfernt. Um fehlerhafte Ergebnisse zu verhindern, müssen zudem Werte, die nicht als Zahl identifiziert werden können, wie zum Beispiel NaN oder Inf entfernt werden. Trifft das auf unter \SI{30}{\percent} der Werte eines Attributes zu, bietet es sich an, diese durch eine Alternative Zahl, die nicht im Wertebereich des Attributes liegt zu ersetzen. Andernfalls sollte auch dieses Attribut verworfen werden. Zudem müssen Signal und Untergrund mit einem binären Label von einander unterschieden werden.\\
-Da solche Datensätze oft eine Vielzahl an Attributen besitzen, bei denen zudem der Informationsgehalt in Bezug auf die Zielklasse sehr stark schwankt, bietet es sich an zuvor Attributsselektion durchzuführen. Damit wird die Laufzeit stark verringert. Ein mögliches Verfahren zu Attributsselektion ist die mRMR-Selektion. Diese betrachtet auch Korrelationen der Variablen und ist besonders interessant beim verwenden von multivariaten Lernen, da auch diese die Korrelation verschiedenen Variablen berücksichtigt.
-\subsubsection{mRMR-Auswahl}
-Die mRMR-Auswahl (\textit{engl.: minimum Redundancy, Maximum Relevance}) basiert auf der Betrachtung der Wahrscheinlichkeitsverteilungen der zur Verfügung stehend Varaiblen. Die mRMR-Selektion wählt dabei die Attribute iterativ aus, indem sie nach welchen sucht, die möglichst stark mit der Zielvariable, aber möglichst gering untereinander korreliert sind. Dabei nutzt sie unter anderem den gemeinsamen Informationsgehalt $I(x,y)$ zweier Variablen $x,y$:
+Da solche Datensätze oft eine Vielzahl an Attributen besitzen, bei denen zudem der Informationsgehalt in Bezug auf die Zielklasse sehr stark schwankt, bietet es sich an zuvor Attributsselektion durchzuführen. Damit wird die Laufzeit der multivarianten Lerner stark verringert. Ein mögliches Verfahren zu Attributsselektion ist die \textit{Forward Selection}.
+\subsubsection{Vorwärtsauswahl}
+Die Vorwärtsauswahl (\textit{engl.: Forward Selection}) arbeitet iterativ und ist abhängig von dem verwendeten Lerner. Dieser erzeugt ein Modell, welchem die Vorwärtsauswahl iterativ die Variable hinzufügt, welche zusammen mit den bereits ausgwählten Variablen die Vorhersagekraft des Modells am meisten erhöht.
+\subsubsection{Stabilitätsanalyse mit dem Jaccard-Index}
+Statistische Schwankungen im Lerner können die Stabilität der Attributsauswahl beeinträchtigen. Diese Stabilität lässt sich mit dem Jaccard-Index untersuchen, welcher ein Maß für die Ähnlichkeit zweier Teilmengen $F_{a},F_{b}$ ist. Er wird definiert über:
 \begin{align}
-	I(x,y) = \int p(x,y) \log\left(\frac{p(x,y)}{p(x)p(y)}\right)\text{d}x\text{d}y.
+	J(F_{a},F_{b}) = \frac{|F_{a} \cup F_{b}|}{|F_{a} \cap F_{b}|}
 \end{align}
-Wobei $p(x), p(y)$ und $p(x,y)$ die Wahrscheinlichkeitsverteilungen der betreffenden Variablen sind. Die Zielvariable des vorliegenden Versuchs ist dabei die Klasse des Ereignisses, also ob es sich um ein Signal- oder Untergrundereignis handelt.
+Der Index $\hat{J}$ erlaubt die Ähnlichkeit verschiedener Selektionen zu beurteilen. Dazu wird der Datensatz in $l$ Teilmengen auf geteilt, auf denen $l$-mal die Attributsauswahl durchgeführt wird. Dadurch ergibt sich der Index $\hat{J}$ zu:
+\begin{align}
+	\hat{J} = \frac{2}{l(l-1)} \sum^{l}_{i=1} \sum^{l}_{j=i+1} J(F_{i},F_{j})
+\end{align}
+
+Die Attributsauswahl ist stabil gegenüber statistischen Schwankungen, wenn der Wert nahe zu $1$ ergibt.
+% \subsubsection{mRMR-Auswahl}
+% Die mRMR-Auswahl (\textit{engl.: minimum Redundancy, Maximum Relevance}) basiert auf der Betrachtung der Wahrscheinlichkeitsverteilungen der zur Verfügung stehend Varaiblen. Die mRMR-Selektion wählt dabei die Attribute iterativ aus, indem sie nach welchen sucht, die möglichst stark mit der Zielvariable, aber möglichst gering untereinander korreliert sind. Dabei nutzt sie unter anderem den gemeinsamen Informationsgehalt $I(x,y)$ zweier Variablen $x,y$:
+% \begin{align}
+% 	I(x,y) = \int p(x,y) \log\left(\frac{p(x,y)}{p(x)p(y)}\right)\text{d}x\text{d}y.
+% \end{align}
+% Wobei $p(x), p(y)$ und $p(x,y)$ die Wahrscheinlichkeitsverteilungen der betreffenden Variablen sind. Die Zielvariable des vorliegenden Versuchs ist dabei die Klasse des Ereignisses, also ob es sich um ein Signal- oder Untergrundereignis handelt.
 \subsubsection{Verschiedene Lernalgorithmen}
 Ein Lernalgorithmus ist der Naive-Bayes-Lerner, der auf dem Bayes'schen Theorem über bedingte Wahrscheinlichkeiten basiert:
 \begin{align}
