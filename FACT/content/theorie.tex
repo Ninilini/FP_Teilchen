@@ -51,10 +51,12 @@ Die Likelihood ergibt sich folglich zu
 Numerisch ist es jedoch sinnvoller die negative Log-Likelihood zu minimieren
 \begin{align}
 	- \ln\mathcal{L} = - \sum_{i=1}^{M}\mathcal{P}(g_{i},\lambda_{i}) = \sum_{i=1}^{M}\ln(g_{i}!) - g_{i} \cdot \ln \lambda_{i} +\lambda_{i}
+	\label{eqn:loglike}
 \end{align}
 sodass sich der Schätzer $\vec{f}$ zu:
 \begin{align}
 	\hat{\vec{f}} = \text{argmin}\left( -\ln(\vec{f}|\pmb{A},\vec{g},\vec{b})\right)
+	\label{eqn:fLike}
 \end{align}
 ergibt.
 \section{Datensatz}
