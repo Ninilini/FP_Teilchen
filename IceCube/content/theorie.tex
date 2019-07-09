@@ -52,9 +52,11 @@ Statistische Schwankungen im Lerner können die Stabilität der Attributsauswahl
 Der Index $\hat{J}$ erlaubt die Ähnlichkeit verschiedener Selektionen zu beurteilen. Dazu wird der Datensatz in $l$ Teilmengen auf geteilt, auf denen $l$-mal die Attributsauswahl durchgeführt wird. Dadurch ergibt sich der Index $\hat{J}$ zu:
 \begin{align}
 	\hat{J} = \frac{2}{l(l-1)} \sum^{l}_{i=1} \sum^{l}_{j=i+1} J(F_{i},F_{j})
+	\label{eq:jc}
 \end{align}
 
 Die Attributsauswahl ist stabil gegenüber statistischen Schwankungen, wenn der Wert nahezu $1$ ergibt.
+\label{jaccard}
 % \subsubsection{mRMR-Auswahl}
 % Die mRMR-Auswahl (\textit{engl.: minimum Redundancy, Maximum Relevance}) basiert auf der Betrachtung der Wahrscheinlichkeitsverteilungen der zur Verfügung stehend Varaiblen. Die mRMR-Selektion wählt dabei die Attribute iterativ aus, indem sie nach welchen sucht, die möglichst stark mit der Zielvariable, aber möglichst gering untereinander korreliert sind. Dabei nutzt sie unter anderem den gemeinsamen Informationsgehalt $I(x,y)$ zweier Variablen $x,y$:
 % \begin{align}

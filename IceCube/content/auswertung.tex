@@ -20,7 +20,17 @@ Die Daten werden im Anschluss durch die Zahlen 0 und 1 gelabelt, wobei die Zahl 
 Der Datensatz wird zudem mit der Funktion \textit{StandardScaler} skaliert.
 
 \subsection{Auswahl der Attribute}
-Die Features für die Lerner werden mit Hilfe einer Forward-Selection ausgewählt. Es wird die Implementierung \textit{SelectKBest} von \textit{sklearn.feature\_selection} verwendet. Die Anzahl der Features wird im Folgenden zunächst im Intervall von 20 bis 150 in Zehnerschritten varriiert.
+Die Features für die Lerner werden mit Hilfe einer Forward-Selection ausgewählt. Es wird die Implementierung \textit{SelectKBest} von \textit{sklearn.feature\_selection} verwendet. 
+
+Um starke statistische Schwankungen bei der Auswahl der Features zu vermeiden, wird der Jacccard-Index nach Abschnitt \ref{jaccard} berechnet und in Abhängigkeit von der Feature-Anzahl in Abbildung \ref{fig:jaccard} dargestellt. Hierzu wird der Datensatz in fünf gleichgroße Teile gesplittet und auf jedem Teil die Featureselektion durchgeführt. Anschließend wird für jede Kombination der Datensätze der Jaccard-Index als Maß für die Ähnlichkeit der Featuremengen ermittelt und nach \eqref{eq:jc} aufsummiert.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\textwidth]{plots/jaccard.png}
+  \caption{Jaccard-Index der selektierten Features zur Untersuchung der statistischen Schwankungen.}
+  \label{fig:jaccard}
+\end{figure}
+\FloatBarrier
+Es lässt sich ein Plateu in einem Bereich von 20 bis 40 Features erkennen. Um eine stabile Auswahl zu gewährleisten, sollte die Anzahl der ausgewählten Features in diesem Bereich liegen. Da aber auch andere Parameter bei der Auswahl eine Rolle spielen, wird die Anzahl der Features im Folgenden zunächst im Intervall von 20 bis 150 in Zehnerschritten varriiert.
 
 Im Anschluss wird der Datensatz mittels \textit{train\_test\_split} in einen Test- und einen Trainingsdatensatz aufgeteilt. Hierbei werden $\SI{30}{\%}$ des Datensatzes zum Testen verwendet.
 
@@ -65,7 +75,9 @@ Als erster Lerner wird ein Random-Forest-Modell über die Funktion \textit{Rando
     \end{tabular}
     \end{table}
     \FloatBarrier
-Zuletzt wird die Vorhersagekraft des besten Random-Forest-Modells in einer sogenannten Confusion-Matrix (deutsch: Wahrheits-Matrix) dargestellt. Diese stellt die Rate der richtig bzw. falsch zugeordneten Klassen dar. Das Label 0 repräsentiert hierbei den Untergrund und der Wert 1 das Signal. Die Matrix wird über die Funktion \textit{confusion\_matrix} berechnet und über die Funktion \textit{plot\_confusion\_matrix} nach \textit{sklearn} geplottet. Die Confusion-Matrix für den Random-Forest-Klassifikator ist in Abbildung \ref{fig:RF_Conf} zu sehen.
+Zuletzt wird die Vorhersagekraft des besten Random-Forest-Modells in einer sogenannten Confusion-Matrix (deutsch: Wahrheits-Matrix) dargestellt. Diese stellt die Rate der richtig bzw. falsch zugeordneten Klassen dar. Das Label 0 repräsentiert hierbei den Untergrund und der Wert 1 das Signal. 
+Der Lerner ordnet das Ereignis der Klasse zu, welche die höhere Wahrscheinlichkeit besitzt. Dieses entspricht einem Konvidenzschnitt von 0.5.
+Die Matrix wird über die Funktion \textit{confusion\_matrix} berechnet und über die Funktion \textit{plot\_confusion\_matrix} nach \textit{sklearn} geplottet. Die Confusion-Matrix für den Random-Forest-Klassifikator ist in Abbildung \ref{fig:RF_Conf} zu sehen.
 \begin{figure}
     \centering
     \includegraphics[width=0.7\textwidth]{plots/RF_confusion.png}
