@@ -1,6 +1,6 @@
 \section{Durchführung}
-Zur Bestimmung des Fluss des Krebsnebels werden die Daten zunächst selektiert. Dazu wird die zuvor bestimmte Gamma-Hadron-Seperation von $0.8$ angewendet. Dazu werden nur die Daten behalten, die eine \textit{gamma\_prediction} \textgreater \; $0.8$ haben. Zudem muss der Abstand zur Quellposition \textit{theta\_deg} bzw. zur $i$-te Off-Position einen Wert von $\sqrt{0.025}\si{\degree}$ haben.\\
-Die für die Entfaltung notwendige Energie-Migrationsmatrix lässt sich bestimmen, indem die \textit{gamma\_energy\_prediction}, die geschätzte Energie des Random Forest, gegen die \textit{corsika\_event\_header\_total\_energy}, die wahre Energie der simulierten Gammas, aufgetragen wird.\\
+Zur Bestimmung des Fluss des Krebsnebels werden die Daten zunächst selektiert. Dazu wird die zuvor bestimmte Gamma-Hadron-Separation von $0.8$ angewendet. Dazu werden nur die Daten behalten, die eine \textit{gamma\_prediction} \textgreater \; $0.8$ haben. Zudem muss der Abstand zur Quellposition \textit{theta\_deg} bzw. zur $i$-te Off-Position einen Wert von $\sqrt{0.025}\si{\degree}$ haben.\\
+Die für die Entfaltung notwendige Energie-Migrationsmatrix lässt sich bestimmen, indem die \textit{gamma\_energy\_prediction}, die geschätzte Energie des Random Forest, gegen die \textit{corsika\_event\_header\_total\_energy}, die wahre Energie der simulierten Gammas, in einem zweidimensionalen Histogramm aufgetragen wird. Hierbei muss auf eine geeignete Normierung geachtet werden.\\
 Im Anschluss lässt sich eine Entfaltung mit der naiven SVD-Methode und einer Poisson-Likelihood durchführen.\\
 Zur korrekten Berechnung des Flusses muss jedoch noch die Akzeptanzkorrektur durchgeführt werden. Sie wird als effektive Fläche $A_{\text{eff}}$ eines perfekten Detektors angegeben. Dabei wird die tatsächliche abgedeckte Detektorfläche $A$ mit der Wahrscheinlichkeit $p(E)$ ein Ereignis der wahren Energie zu messen multipliziert. Dadurch ergibt sich für die Akzeptanzkorrektur:\\
 \begin{align}
@@ -8,9 +8,9 @@ Zur korrekten Berechnung des Flusses muss jedoch noch die Akzeptanzkorrektur dur
 	A &= \pi \cdot (\SI{27000}{\centi\meter})^2 = \SI{229022.1044}{\centi\meter}^2
 	\label{eqn:Aeff}
 \end{align}
-Zusammen mit den entfalteten Ereigniszahlen $\hat{\vec{f}}$ berechnet sich der Fluss des Krebsnebels zu:
+Zusammen mit den entfalteten Ereigniszahlen $\hat{\vec{\pmb{f}}}$ berechnet sich der Fluss des Krebsnebels zu:
 \begin{align}
-	\Phi_{i} = \frac{\hat{\vec{f}}}{A_{\text{eff},i} \cdot \Delta E_{i} \cdot t_{\text{obs}}}
+	\Phi_{i} = \frac{\hat{f_\mathrm{i}}}{A_{\text{eff},i} \cdot \Delta E_{i} \cdot t_{\text{obs}}}
 	\label{eqn:phi}
 \end{align}
 Dabei ist $\Delta E_{i}$ die Breite des Energiebins und $t_{\text{obs}}$ die Beobachtungsdauer, welche aus der Spalte \textit{ontime} der \textit{runs} Tabelle entnommen werden kann.
