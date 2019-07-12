@@ -1,6 +1,6 @@
 \section{Auswertung}
 Zur Auswertung wird die Programmiersprache \texttt{python (Version 3.7.2)} mit
-den Bibliothekserweiterungen \texttt{numpy}~\cite{numpy}, \texttt{scipy}~\cite{scipy} und \texttt{matplotlib}~\cite{matplotlib} verwendet.\\
+den Bibliotheken \texttt{numpy}~\cite{numpy}, \texttt{scipy}~\cite{scipy},  \texttt{matplotlib}~\cite{matplotlib} und \texttt{uncertainties}~\cite{uncertainties} verwendet.\\
 Zu Beginn wird der Cut auf die \textit{gamma\_prediction} angewendet. Im Anschluss wird sich das Eregbnis der Analyse \cite{FACTanalyse}, das zu den vorliegenden Datensätzen geführt hat, noch einmal vor Augen geführt. Dazu werden in dem in Abbildung \ref{fig:Theta2} aufgeführten Theta-Quadrat-Plot der Abstand von der rekonstruierten Quellposition zur angenommenen Quellposition aufgenommen. \\
 \begin{figure}
   \centering
@@ -9,7 +9,7 @@ Zu Beginn wird der Cut auf die \textit{gamma\_prediction} angewendet. Im Anschlu
   \label{fig:Theta2}
 \end{figure}
 Aus dem Theta-Quadrat-Plot lässt sich ablesen, dass $\theta = \sqrt{0.025}\si{\degree}$ eine gute Separation zwischen Signal und Untergrund ermöglicht.\\
-Mithilfe der \texttt{2dhistogramm}-Funktion von \texttt{numpy} lässt sich die Energie-Migrationsmatrix bestimmen. Diese ist in Abbildung \ref{fig:mig} dargestellt.\\
+Mithilfe der \texttt{histogramm2d}-Funktion von \texttt{numpy} lässt sich die Energie-Migrationsmatrix bestimmen. Diese ist in Abbildung \ref{fig:mig} dargestellt. Die Energie-Migrationsmatrix wird nicht symmetrisch gewählt, da verschiedene Test gezeigt haben, dass genauere Ergebnisse erzieht werden, wenn die Observablen mit einer höheren Anzahl an Bins gebinnt werden. Es wird ein logarithmisches Binning zwischen $\SI{500}{\giga\electronvolt}$ und $\SI{15}{\tera\electronvolt}$ mit einem \textit{Underflow}- und einem \textit{Overflow}Bin gewählt. Für die Energievorhersage werden dazu acht und für die Corsika-Energien werden dreizehn Bins verwendet.\\
 \begin{figure}
   \centering
   \includegraphics[width=0.4\textwidth]{plots/Matrix.pdf}
@@ -17,109 +17,101 @@ Mithilfe der \texttt{2dhistogramm}-Funktion von \texttt{numpy} lässt sich die E
   \label{fig:mig}
 \end{figure}
 \subsection{Naive SVD-Entfaltung}
-Um nach Formel \eqref{eqn:NSVD} eine naive SVD-Entfaltung durchzuführen, müssen die gemessenen Ereignisse des Krebsnebels und der Untergrund gebinnt werden. Das Binning wird analog zu dem der Migrationsmatrix gewählt. Die beiden erhaltenden Verteilungen werden logarithmisch aufgetragen und sind in Abbildung \ref{fig:UG_Sig} dargestellt. Dabei ist zubeachten, dass der Untergrund zusätzlich mit $a=0.2$ gewichtet wird, da der Untergrund aus fünf verschiedenen Off-Positionen stammt.\\
+Um nach Formel \eqref{eqn:NSVD} eine naive SVD-Entfaltung durchzuführen, müssen die gemessenen Ereignisse des Krebsnebels und der Untergrund gebinnt werden. Das Binning wird analog zu dem der Migrationsmatrix gewählt. Die beiden erhaltenden Verteilungen werden ebenfalls logarithmisch aufgetragen und sind in Abbildung \ref{fig:UG_Sig} dargestellt. Dabei ist zubeachten, dass der Untergrund zusätzlich mit $\alpha=0.2$ gewichtet wird, da der Untergrund aus fünf verschiedenen Off-Positionen stammt.\\
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Energieverteilung_UG_SIG.pdf}
-  \caption{Der Plot zeigt die gebinnte Energieverteilung des Untergrunds in grün und die gebinnte, gemessene Energieverteilung des Krebsnebels in dunkelblau.}
+  \caption{Der Plot zeigt die gebinnte, gemessene Energieverteilung des Untergrunds in grün und die gebinnte, gemessene Energieverteilung des Krebsnebels in dunkelblau. Die gebinnten Energieverteilungen werden genutzt, um nach Formel \eqref{eqn:NSVD} das entfaltete Energiespektrum des Krebsnebels zu bestimmen.}
   \label{fig:UG_Sig}
 \end{figure}
-Da die Energie-Migrationsmatrix nicht symmetrisch ist, wird sie mit Hilfe einer Moore-Penrose-Pseudoinversen invertiert. Zusammen mit den gebinnten Energieverteilungen ergibt sich das entfaltete Energiespektrum des Krebnebels nach Formel \eqref{eqn:NSVD} zu:
+Durch die asymmetrische Form der Migrationsmatrix wird diese mit Hilfe einer Moore-Penrose-Pseudoinversen invertiert. Damit ergibt sich das entfaltete Energiespektrum des Krebsnebels nach Formel \eqref{eqn:NSVD} zu:
 \begin{align*}
 	\hat{\vec{f}_{\text{NSVD}}} = \begin{pmatrix}
-			319.374\\
-			196.335\\
-			96.902\\
-			12.454\\
-			1.330\\
+			210.214 \pm 60.876\\
+			235.607 \pm 36.737\\
+			102.471 \pm 24.205\\
+			63.463 \pm 16.531\\
+			16.903 \pm 9.938\\
 	\end{pmatrix}.
 \end{align*}
-Die Verteilung ist in Abbildung \ref{fig:E1} abgebildet.
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{plots/Entfaltung_1.pdf}
-  \caption{Der Plot zeigt die entfaltete Energieverteilung des Krebsnebels. Zum Entfalten wurde wurde die naive SVD-Entfaltung genutzt.}
-  \label{fig:E1}
-\end{figure}
+Die Unsicherheiten auf den Schätzer wird bestimmt indem ein Poissonfehler auf die gemessene Energieverteilung des Krebsnebels und den Untergrund angenommen wird. Die Verteilung ist zusammen mit der sich bei eine Likelihood-Entfaltung ergebenen Verteilung in Abbildung \ref{fig:E3} abgebildet. Der $x$-Fehler ergibt sich dabei über die Binbreiten.
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{plots/Entfaltung_1.pdf}
+%   \caption{Der Plot zeigt die entfaltete Energieverteilung des Krebsnebels. Zum Entfalten wurde wurde die naive SVD-Entfaltung genutzt.}
+%   \label{fig:E1}
+% \end{figure}
 \subsection{Likelihood-Entfaltung}
 Die Lösung der Likelihood-Entfaltung \eqref{eqn:fLike} kann nicht analytisch bestimmt werden. Daher wird mithilfe der Funktion \textit{scipy.optimize.minimize} die negative Log-Likelihood \eqref{eqn:loglike} numerisch minimiert. Damit ergibt sich der Schätzer $\hat{\vec{f}_{\text{Like}}}$ zu:\\
 \begin{align*}
 	\hat{\vec{f}_{\text{Like}}} = \begin{pmatrix}
-			317.702\\
-			199.230\\
-			94.170\\
-			14.211\\
-			1.000\\
+			188.785 \pm 41.204\\
+			241.043 \pm 31.394\\
+			99.484 \pm 18.659\\
+			67.197 \pm 12.713\\
+			13.374 \pm 5.398\\
 	\end{pmatrix}.
 \end{align*}
-Die entfaltete Energieverteilung befindet sich in Abbildung \ref{fig:E2}.
+Um die Unsicherheiten zu bestimmten werden mit Hilfe der Kovarianzmatrix 10000 gaußverteilte Zufallszahlen für jedes Bin beszogen und von diesen die Varianz bestimmt.
+Die Energieverteilungen für die beiden Entfaltungsmethoden befindet sich in Abbildung \ref{fig:E3}.
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{plots/Entfaltung_2.pdf}
+%   \caption{Der Plot zeigt die entfaltete Energieverteilung des Krebsnebels. Zum Entfalten wurde wurde die naive SVD-Entfaltung genutzt.}
+%   \label{fig:E2}
+% \end{figure}
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\textwidth]{plots/Entfaltung_2.pdf}
-  \caption{Der Plot zeigt die entfaltete Energieverteilung des Krebsnebels. Zum Entfalten wurde wurde die naive SVD-Entfaltung genutzt.}
-  \label{fig:E2}
+  \includegraphics[width=0.8\textwidth]{plots/Entfaltung_VGL.pdf}
+  \caption{Der Plot zeigt die entfaltete Energieverteilung des Krebsnebels. Für die in rot dargestellte Verteilung wurde eine naive SVD-Entfaltung verwendet. Für die in blau dargestellte Verteilung wurde eine Likelihood-Entafltung durchgeführt.}
+  \label{fig:E3}
 \end{figure}
 \subsection{Der Fluss des Krebsnebels}
 Um den Fluss des Krebsnebels nach Formel \eqref{eqn:phi} zu brechnen, müssen zunächst die Observationszeit $t_{\text{obs}}$, die Breite der Energiebins $\Delta E_{i}$ und nach Formel \eqref{eqn:Aeff} die Akzeptanzkorrektur berechnet werden.\\
-Die Observationszeit beträgt $t_{\text{obs}} = \SI{63815.89}{\second}$. Die Breite der Energiebins wird zu
+Die Observationszeit beträgt $t_{\text{obs}} = \SI{63815.89}{\second}$ und die Breite der Energiebins ist:
 \begin{align*}
 	\Delta E_{i} = \begin{pmatrix}
-			0.756\;\mathrm{GeV}\\
+			0.487\;\mathrm{GeV}\\
+			0.962\;\mathrm{GeV}\\
 			1.899\;\mathrm{GeV}\\
-			4.770\;\mathrm{GeV}\\
-			11.981\;\mathrm{GeV}\\
-			30.095\;\mathrm{GeV}\\
+			3.749\;\mathrm{GeV}\\
+			7.4025\;\mathrm{GeV}\\
 	\end{pmatrix}
 \end{align*}
-bestimmt.
 Für die Akzeptanzkorrektur werden die Werte
 \begin{align*}
 	A_{\text{eff},i} = \begin{pmatrix}
-			3.607\cdot10^{7}\;\mathrm{m}^2\\
-			2.409\cdot10^{8}\;\mathrm{m}^2\\
-			3.652\cdot10^{8}\;\mathrm{m}^2\\
-			3.760\cdot10^{8}\;\mathrm{m}^2\\
-			1.748\cdot10^{8}\;\mathrm{m}^2\\
+			3.141\cdot10^{7}\;\mathrm{cm}^2\\
+			2.445\cdot10^{8}\;\mathrm{cm}^2\\
+			4.323\cdot10^{8}\;\mathrm{cm}^2\\
+			5.495\cdot10^{8}\;\mathrm{cm}^2\\
+			5.502\cdot10^{8}\;\mathrm{cm}^2\\
 	\end{pmatrix}
 \end{align*}
-ermittelt.
+ermittelt. Dabei ist zu beachten, dass nur $\SI{70}{\percent}$ der simulierten Ereignisse verwendet werden.
 Damit ergibt sich der Fluss des Krebsnebels für die beiden Entfaltungsarten zu:
 \begin{align*}
 	\Phi_{\text{NSVD}} = \begin{pmatrix}
-			1.835\cdot10^{-10}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			6.725\cdot10^{-12}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			8.716\cdot10^{-13}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			4.332\cdot10^{-14}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			3.959\cdot10^{-15}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-	 \end{pmatrix} &\;\;\; \Phi_{\text{Like}}  = \begin{pmatrix}
-				1.826\cdot10^{-10}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-				6.824\cdot10^{-12}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-				8.469\cdot10^{-13}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-				4.866\cdot10^{-14}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-				3.034\cdot10^{-15}\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-		\end{pmatrix}
+			(2.153\cdot10^{-10}\pm 6.235\cdot10^{-11})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(1.570\cdot10^{-11}\pm 2.448\cdot10^{-12})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(1.956\cdot10^{-12}\pm 4.620\cdot10^{-13})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(4.827\cdot10^{-13}\pm 1.257\cdot10^{-13})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(6.504\cdot10^{-14}\pm 3.824\cdot10^{-14})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+	 \end{pmatrix}
 \end{align*}
-In Abbildung \ref{fig:Fluss} befindet sich eine graphische Darstellung des Flusses des Krebsnebels.\\
+\begin{align*}
+	\Phi_{\text{Like}} = \begin{pmatrix}
+			(1.936\cdot10^{-10}\pm 4.220\cdot10^{-11})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(1.606\cdot10^{-11}\pm 2.092\cdot10^{-12})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(1.895\cdot10^{-12}\pm 3.561\cdot10^{-13})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(5.124\cdot10^{-13}\pm 9.670\cdot10^{-14})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+			(5.156\cdot10^{-14}\pm 2.077\cdot10^{-14})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
+	 \end{pmatrix}
+\end{align*}
+In beiden Fällen wird die Unsicherheit mit Gaußscher Fehlerfortpflanzung bestimmen. In Abbildung \ref{fig:Fluss} befindet sich eine graphische Darstellung des Flusses des Krebsnebels.\\
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Fluss.pdf}
-  \caption{Der Plot zeigt in grün den berechneten Fluss des Krebsnebels mit dem Schätzer der naiven SVD-Entfaltung. In blau ist der berechnete Fluss des Krebsnebels mit dem Schätzer der Likelihood-Entfaltung dargestellt.}
+  \caption{Der Plot zeigt in rot den berechneten Fluss des Krebsnebels mit dem Schätzer der naiven SVD-Entfaltung. In blau ist der berechnete Fluss des Krebsnebels mit dem Schätzer der Likelihood-Entfaltung dargestellt.}
   \label{fig:Fluss}
-\end{figure}
-Für die Likelihood-Entfaltung lässt sich zudem eine Fehlerrechnung mithilfe der Kovarianzmatrix durchführen. Damit ergeben sich die fehlerbehafteten Werte des Fluss zu:
-\begin{align*}
-	\Phi_{\text{Like}} = \begin{pmatrix}
-			(1.825\cdot10^{-10}\pm 2.046\cdot10^{-11})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			(6.824\cdot10^{-12}\pm 7.778\cdot10^{-13})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			(8.469\cdot10^{-13}\pm 1.338\cdot10^{-13})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			(4.866\cdot10^{-14}\pm 3.766\cdot10^{-14})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-			(3.034\cdot10^{-15}\pm 2.999\cdot10^{-15})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-1}\mathrm{s}^{-1}\\
-	 \end{pmatrix}
-\end{align*}
-In Abbildung \ref{fig:FlussLike} befindet sich das Ergebnis der Fluss-Berechnung mit Fehlerrechnung. Der $x$-Fehler ergibt sich dabei über die Binbreiten.
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{plots/Fluss_Like.pdf}
-  \caption{Der Plot zeigt den berechneten Fluss des Krebsnebels mit Fehlerrechnung. Der verwendete Schätzer wurde mit der Likelihood-Entfaltung bestimmt.}
-  \label{fig:FlussLike}
 \end{figure}
