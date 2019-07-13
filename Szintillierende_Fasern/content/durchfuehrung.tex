@@ -1,1 +1,31 @@
-\section{Aufbau und Durchführung}
+\section{Versuchsaufbau}
+
+\subsection{Aufnahme der Messdaten}
+Die Messungen werden an einer einzelnen Faser durchgeführt, welche mit Hilfe einer LED-Lampe angeregt wird. Die Position der Lampe kann über die Längsachse der Faser, $x$-Richtung genannt, variiert werden. Am Ende der Faser befindet sich ein Spektrometer, welches um das Faserende herum in der vertikalen- sowie in der horizontalen Ebene verschoben werden kann.
+Sowohl die Positionsänderungen als auch die LED werden über ein Computerprogramm gesteuert.
+
+Um Faseranregungen durch das umliegende Raumlicht zu vermeiden, werden die Messungen im Dunkeln durchgeführt. Das Spektrometer befindet sich zum Schutz zusätzlich in einer Dunkelkiste.
+
+\subsection{Simulationsdaten}
+Zum Vergleich mit den Messdaten stehen weiterhin Simulationsdaten zur Verfügung. Hierzu wird der Weg eines Photons durch eine einzelne Faser mittels des Programmes GEANT4 untersucht. Anschließend wird ein Subdetektor aus 50 Fasern simuliert, welche an jeweils 24 Stellen angeregt werden. Am Ende der Fasern wird anstelle der Ausleseelektronik ein perfektes Detektorvolumen angebracht, welches alle Photonen registriert, welche die Faser verlassen.
+Als Variablen stehen in den Simulationsdaten die folgenden Größen zur Verfügung:
+\begin{itemize}
+    \item y\_{exit}, y\_{exit} \textit{(Koordinaten, wo Photon Faser verlässt)}
+    \item x\_{start}, y\_{start}, z\_{start} \textit{(Koordinaten, wo Photon erzeugt wird)}
+    \item px\_{start}, py\_{start}, pz\_{start} \textit{(Impulskomponenten bei Erzeugung des Photons)}
+    \item reflCoCl, reflClCl \textit{(Anzahl der Reflektionen an Kern-Mantel- bzw. Mantel-Mantel-Grenzfläche)}
+    \item wl \textit{(Photonwellenlänge)}
+    \item gpsPosX \textit{(x-Koordinate der Photonerzeugung)}
+    \item length\_core, length\_clad \textit{(Wegstrecke des Photons in Kern bzw. Mantel)}
+    \item rayleighScatterings \textit{(Anzahl an Rayleigh-Streuungen)}
+\end{itemize}
+
+\section{Versuchsdurchführung}
+Die Einstellungen für die einzelnen Messreihen werden von einem Computer aus vorgenommen und gestartet. Anschließend erfolgt der Messvorgang vollstädnig automatisiert. 
+Vor jeder Messung wird ein \textit{ReferenceRun} durchgeführt, welcher die Funktion aller Geräte prüft und die Nullpositionen festlegt.\\
+
+Zur Bestimmung des Untergrundes wird zunächst der Dunkelstrom mit und ohne Dunkelkammer bei an- und ausgeschaltetem Licht bestimmt. Hierzu wird jeweils eine Messung bei einem horizontalen Winkel von $\SI{0}{°}$ und $\SI{60}{°}$ bei einem festen vertikalen Winkel von $\SI{0}{°}$ und einer festen LED-Position von $\SI{1}{m}$ mit einem LED-Strom von $\SI{10}{mA}$ durchgeführt.\\
+
+Im Anschluss wird die Winkelverteilung der Photonen, welche die Faser verlassen, ermittelt. Hierzu wird bei einer festen LED-Position von $\SI{1}{m}$ der horizontale Winkel in $\SI{5}{°}$-Schritten in einem Bereich von $\SI{-20}{°}$ bis $\SI{25}{°}$, sowie der vertikale Winkel ebenfalls in $\SI{5}{°}$ von $\SI{-5}{°}$ bis $\SI{65}{°}$ geändert und jeweils die Photonenintensität bestimmt.\\
+
+Zuletzt wird die winkelabhängige Photonenintensität untersucht. Dazu wird der horizontale Winkel in $\SI{10}{°}$-Schritten von $\SI{-20}{°}$ bis $\SI{90}{°}$ und die Position der LED in $\SI{10}{cm}$ Schritten von $\SI{0}{m}$ bis $\SI{0.9}{m}$ variiert, während ein fester horizontaler Winkel von $\SI{0}{°}$ eingestellt wird.
