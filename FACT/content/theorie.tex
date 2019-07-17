@@ -13,7 +13,7 @@ Abbildung \ref{fig:Boten} zeigt schematisch die drei Arten von Botenteilchen und
 \FloatBarrier
 Tscherenkow-Teleskope, wie das FACT-Teleskop, machen sich die Wechselwirkungen von hochenergetischen Photonen mit der Atmosphäre zunutze. Hierbei entstehen Teilchenkaskaden, welche sich zum Teil schneller als die Lichtgeschwindigkeit des durchquerten Mediums bewegen und somit Tscherenkow-Licht in Form eines Kegels emittieren. Dieses wird von den Teleskopen aufgenommen und ausgewertet.
 Da die Photonen ungeladen sind, erfahren sie auf ihrem Weg zur Erde keine Ablenkung durch Magnetfelder. Dadurch bleiben die Richtungsinformationen erhalten und können zur Bestimmung der Quelle verwendet werden.
-Die Teilchenkaskaden werden jedoch nicht nur durch Photonen, sondern ebenfalls durch geladene Botenteilchen wie zum Beispiel Protonen verursacht. Da diese in der Gammaastronomie als Hintergrund zählen, müssen diese Ereignisse von den Gamma-Ereignissen getrennt werden.
+Die Teilchenkaskaden werden jedoch nicht nur durch Photonen, sondern ebenfalls durch geladene Botenteilchen wie zum Beispiel Protonen verursacht. Da diese in der Gammaastronomie als Untergrund zählen, müssen diese Ereignisse von den Gamma-Ereignissen getrennt werden.
 
 
 %In der Astroteilchenphysik werden die sogenannten Botenteilchen, die von Quellen ausgesendet werden, in drei Kategorien eingeteilt. Die geladene kosmische Strahlung wird durch Magnetfelder im intergalaktischen und interstellarem Medium abgelenkt. Deshalb lässt sich zwar bedingt auf ihre Ladung zurückschließen, aber die Richtungsinformation zu ihrer Quelle geht verloren. Eine weitere Kategorie bilden die Neutrinos. Sie sind durch ihren extrem kleinen Wirkungsquerschnitt nur schwer nachzuweisen. Durch ihre neutrale Ladung werden sie jedoch nicht abgelenkt und besitzen somit grundsätzlich eine Richtungsinformation. Die aktuelle Forschung beschäftigt sich mit den ersten Hinweisen zu Neutrinopunktquellen. Die dritte Kategorie bilden die hochenergetischen Photonen. Sie übermitteln die Richtungsinformation zu ihrer Quelle und können sowohl direkt mit Satelliten nachgewiesen werden oder mit bodengebundenen Tscherenkow-Teleskopen.
@@ -27,7 +27,7 @@ Die Teilchenkaskaden werden jedoch nicht nur durch Photonen, sondern ebenfalls d
 %\end{figure}
 %Der vorliegende Versuch beschäftigt sich mit der Gammaastronomie und somit den Photonen als Botenteilchen.
 \subsection{FACT}
-Das \textit{First G-APD Cherenkov Telescope}, \cite{Anderhub_2013} kurz FACT, ist ein bodengebundenes, abbildendes Tscherenkow-Teleskop, welches in Abbildung \ref{fig:FACT} zu erkennen ist. Seit 2011 operiert es im  im Obersatorio del Roque de los Muchachos auf La Palma, wo es aufgrund der geringen Lichtverschmutzung platziert wurde.
+Das \textit{First G-APD Cherenkov Telescope}, \cite{Anderhub_2013} kurz FACT, ist ein bodengebundenes, abbildendes Tscherenkow-Teleskop, welches in Abbildung \ref{fig:FACT} zu erkennen ist. Seit 2011 operiert es im Obersatorio del Roque de los Muchachos auf La Palma, wo es aufgrund der geringen Lichtverschmutzung platziert wurde.
 Beobachtet werden Quellen von hochenergetischen Photonen, wie zum Beispiel dem Supernovaüberrest Krebsnebel. Des Weiteren dient das FACT-Teleskop zum Testen der Anwendung von siliziumbasierten Halbleiterphotodetektoren, den sogenannten G-APD, in der Gammaastronomie. Diese bieten eine höhere Robustheit und haben eine größere Detektionseffizienz, sodass eine höhere Sensitivität der Kamera vermutet wird. \cite{FACTside, Anderhub_2013} 
 \begin{figure}
   \centering
@@ -49,7 +49,7 @@ ausgedrückt werden. Die Verteilung der physikalischen Größe $x$ wird dabei du
 Um aus der gemessenen Verteilung $g(y)$ die physikalische Verteilung $f(x)$ zu erhalten, können Entfaltungsmethoden angewendet werden.
 Hierzu werden die Verteilungen zunächst durch Histogramme dargestellt, wodurch die Verteilungen aus Gleichung \eqref{eqn:1} zu Vektoren und der Faltungskern zu einer Matrix transformiert werden. Die Fredholmsche-Integralgleichung erster Art kann somit als 
 \begin{align}
-	\vec{\pmb{g}} = \pmb{A}\vec{\pmb{f}} + \vec{\pmb{b}}
+	{\pmb{g}} = \pmb{A}{\pmb{f}} + {\pmb{b}}
 	\label{eqn:2}
 \end{align}
 dargestellt werden.
@@ -62,7 +62,7 @@ Um einen Schätzer für die physikalische Größe zu erhalten, muss \eqref{eqn:2
 Die Naive SVD-Entfaltung bildet die einfachste, aber auch fehleranfälligste Möglichkeit einer Entfaltung. 
 Hierzu wird die Migrationsmatrix des Energieschätzers $\pmb{A}$ invertriert, indem die Moore-Penrose-Pseudoinverse berechnet wird. Der Schätzer für die physikalische Größe kann anschließend über
 \begin{align}
-	\hat{\vec{\pmb{f}}} = \pmb{A}^{+}(\vec{\pmb{g}} - \vec{\pmb{b}})
+	\hat{{\pmb{f}}} = \pmb{A}^{+}({\pmb{g}} - {\pmb{b}})
 	\label{eqn:NSVD}
 \end{align}
 ermittelt werden.
@@ -72,7 +72,7 @@ Als zweite Möglichkeit kann eine Likelihood-Entfaltung angewendet werden.
 Hierfür wird die Annahme getroffen, dass die Messgröße poissonverteilt ist und somit der Wahrscheinlichkeitsverteilung
 \begin{align}
 	P(g_{i}) &= \mathcal{P}(g_{i},\lambda_{i}) \; \text{mit}\\
-	\vec{\pmb{\lambda}} &= \pmb{A} \cdot \vec{\pmb{f}} + \vec{\pmb{b}}
+	{\pmb{\lambda}} &= \pmb{A} \cdot {\pmb{f}} + {\pmb{b}}
 \end{align}
 folgt.
 Die Likelihood der Poissonverteilung ergibt sich zu
@@ -84,9 +84,9 @@ Numerisch ist es jedoch sinnvoller die negative Log-Likelihood zu minimieren
 	- \ln\mathcal{L} = - \sum_{i=1}^{M}\mathcal{P}(g_{i},\lambda_{i}) = \sum_{i=1}^{M}\ln(g_{i}!) - g_{i} \cdot \ln \lambda_{i} +\lambda_{i}
 	\label{eqn:loglike}
 \end{align}
-sodass sich der Schätzer $\vec{\pmb{f}}$ zu:
+sodass sich der Schätzer ${\pmb{f}}$ zu:
 \begin{align}
-	\hat{\vec{\pmb{f}}} = \text{argmin}\left(- \ln\mathcal{L}( \vec{\pmb{f}}|\pmb{A},\vec{\pmb{g}},\vec{\pmb{b}})\right)
+	\hat{{\pmb{f}}} = \text{argmin}\left(- \ln\mathcal{L}( {\pmb{f}}|\pmb{A},{\pmb{g}},{\pmb{b}})\right)
 	\label{eqn:fLike}
 \end{align}
 ergibt.

@@ -9,7 +9,7 @@ Zu Beginn wird der Cut auf die \textit{gamma\_prediction} angewendet. Im Anschlu
   \label{fig:Theta2}
 \end{figure}
 Aus dem Theta-Quadrat-Plot lässt sich ablesen, dass $\theta = \sqrt{0.025}\si{\degree}$ eine gute Separation zwischen Signal und Untergrund ermöglicht.\\
-Mithilfe der \texttt{histogramm2d}-Funktion von \texttt{numpy} lässt sich die Energie-Migrationsmatrix bestimmen. Diese ist in Abbildung \ref{fig:mig} dargestellt. Die Energie-Migrationsmatrix wird nicht symmetrisch gewählt, da verschiedene Test gezeigt haben, dass genauere Ergebnisse erzieht werden, wenn die Observablen mit einer höheren Anzahl an Bins gebinnt werden. Es wird ein logarithmisches Binning zwischen $\SI{500}{\giga\electronvolt}$ und $\SI{15}{\tera\electronvolt}$ mit einem \textit{Underflow}- und einem \textit{Overflow}Bin gewählt. Für die Energievorhersage werden dazu acht und für die Corsika-Energien werden dreizehn Bins verwendet.\\
+Mithilfe der \texttt{histogramm2d}-Funktion von \texttt{numpy} lässt sich die Energie-Migrationsmatrix bestimmen. Diese ist in Abbildung \ref{fig:mig} dargestellt. Die Energie-Migrationsmatrix wird nicht symmetrisch gewählt, da verschiedene Test gezeigt haben, dass genauere Ergebnisse erzieht werden, wenn die Observablen mit einer höheren Anzahl an Bins gebinnt werden. Es wird ein logarithmisches Binning zwischen $\SI{500}{\giga\electronvolt}$ und $\SI{15}{\tera\electronvolt}$ mit einem \textit{Underflow}- und einem \textit{Overflow}-Bin gewählt. Für die Energievorhersage werden dazu dreizehn und für die wahren Energien werden acht Bins verwendet.\\
 \begin{figure}
   \centering
   \includegraphics[width=0.4\textwidth]{plots/Matrix.pdf}
@@ -34,7 +34,7 @@ Durch die asymmetrische Form der Migrationsmatrix wird diese mit Hilfe einer Moo
 			16.903 \pm 9.938\\
 	\end{pmatrix}.
 \end{align*}
-Die Unsicherheiten auf den Schätzer wird bestimmt indem ein Poissonfehler auf die gemessene Energieverteilung des Krebsnebels und den Untergrund angenommen wird. Die Verteilung ist zusammen mit der sich bei eine Likelihood-Entfaltung ergebenen Verteilung in Abbildung \ref{fig:E3} abgebildet. Der $x$-Fehler ergibt sich dabei über die Binbreiten.
+Die Unsicherheiten auf den Schätzer wird bestimmt indem ein Poissonfehler auf die gemessene Energieverteilung des Krebsnebels und den Untergrund angenommen wird. Die Verteilung ist zusammen mit der sich bei eine Likelihood-Entfaltung ergebenen Verteilung in Abbildung \ref{fig:E3} abgebildet. Der $x$-Fehler ergibt sich dabei über die Darstellung in Form eines Histogrammes und ist durch die Binbreiten gegeben.
 % \begin{figure}
 %   \centering
 %   \includegraphics[width=0.8\textwidth]{plots/Entfaltung_1.pdf}
@@ -71,11 +71,11 @@ Um den Fluss des Krebsnebels nach Formel \eqref{eqn:phi} zu brechnen, müssen zu
 Die Observationszeit beträgt $t_{\text{obs}} = \SI{63815.89}{\second}$ und die Breite der Energiebins ist:
 \begin{align*}
 	\Delta E_{i} = \begin{pmatrix}
-			0.487\;\mathrm{GeV}\\
-			0.962\;\mathrm{GeV}\\
-			1.899\;\mathrm{GeV}\\
-			3.749\;\mathrm{GeV}\\
-			7.4025\;\mathrm{GeV}\\
+			0.487\;\mathrm{TeV}\\
+			0.962\;\mathrm{TeV}\\
+			1.899\;\mathrm{TeV}\\
+			3.749\;\mathrm{TeV}\\
+			7.4025\;\mathrm{TeV}\\
 	\end{pmatrix}
 \end{align*}
 Für die Akzeptanzkorrektur werden die Werte
@@ -108,7 +108,7 @@ Damit ergibt sich der Fluss des Krebsnebels für die beiden Entfaltungsarten zu:
 			(5.156\cdot10^{-14}\pm 2.077\cdot10^{-14})\;\mathrm{TeV}^{-1}\mathrm{cm}^{-2}\mathrm{s}^{-1}\\
 	 \end{pmatrix}
 \end{align*}
-In beiden Fällen wird die Unsicherheit mit Gaußscher Fehlerfortpflanzung bestimmen. In Abbildung \ref{fig:Fluss} befindet sich eine graphische Darstellung des Flusses des Krebsnebels.\\
+In beiden Fällen wird die Unsicherheit für $\Phi$ durch die Division $\Delta \Phi = \sfrac{\Delta \hat{\vec{f}}}{A_{\text{eff},i} \cdot \Delta E_{i} \cdot t_{\text{obs}} }$ ermittelt. In Abbildung \ref{fig:Fluss} befindet sich eine graphische Darstellung des Flusses des Krebsnebels.\\
 \begin{figure}
   \centering
   \includegraphics[width=0.8\textwidth]{plots/Fluss.pdf}
