@@ -100,16 +100,24 @@ In den Anstieg wird eine Fit-Funktion der Form
     r_{\mathrm{min}}(\theta) = a \arctan(b + c \theta)
 \end{align}
 gelegt.
--------------Warum diese Funktion?----------
 Mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize} werden für die Parameter die Werte
 \begin{align*}
-    a = (655 \pm 2)\cdot 10^{-4} ,\\
-    b = (-6.5 \pm 0.2),\\
-    c = (358 \pm 9)\cdot 10^{-3}
+    a &= (655 \pm 2)\cdot 10^{-4} ,\\
+    b &= (-6.5 \pm 0.2),\\
+    c &= (358 \pm 9)\cdot 10^{-3}
 \end{align*}
 ermittelt.
 
-Aus Abbildung \ref{fig:Hist_rmin_sim} wird außerdem der maximale Winkel bestimmt, unter welchem Kernphotonen die Ausleseelektronik erreichen. Hierzu wird in Abhängigkeit vom minimalen Abstand $r_{\mathrm{min}}$ der Winkel bestimmt, ab welchem weniger als 130 Einträge in einem Bin vorhanden sind. Die Grenzwinkel $\theta_{\mathrm{max}}$ sind in Abbildung \ref{fig:theta_max_sim} gegen $r_{\mathrm{min}}$ aufgetragen.
+Aus Abbildung \ref{fig:Hist_rmin_sim} wird außerdem der maximale Winkel bestimmt, unter welchem Kernphotonen die Ausleseelektronik erreichen. In Abbildung \ref{fig:theta_max_grad_bsp} ist hierzu der winkelabhängige Verlauf der Photonenintensität beispielhaft für $r_\mathrm{min} = \SI{0.087}{mm}$, sowie der Gradient des Verlaufes dargestellt. Letzterer wird mit der Funktion \textit{numpy.gradient} berechnet. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/theta_max_grad_bsp.pdf}
+    \caption{Oben: Verlauf der Photonenintensität in Abhängigkeit des Winkel $\theta$ für $r_\mathrm{min} = \SI{0.087}{mm}$. Unten: Gradient der Photonenintensität in Abhängigkeit des Winkel $\theta$ für $r_\mathrm{min} = \SI{0.087}{mm}$. }
+    \label{fig:theta_max_grad_bsp}
+\end{figure}
+\FloatBarrier
+Die Photonenintensität steigt stetig an und fällt anschließend steil auf etwa null ab. An der Stelle des Endpunktes dieses Abfalls ist ein Minimum des Gradienten erkennbar, da die Steigung ab diesem Punkt lediglich flach verläuft. Dieses Verfahren wird für alle $r_\mathrm{min}$-Werte durchgeführt.
+Die Grenzwinkel $\theta_{\mathrm{max}}$ sind in Abbildung \ref{fig:theta_max_sim} gegen $r_{\mathrm{min}}$ aufgetragen.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{plots/theta_max_sim.pdf}
@@ -117,7 +125,7 @@ Aus Abbildung \ref{fig:Hist_rmin_sim} wird außerdem der maximale Winkel bestimm
     \label{fig:theta_max_sim}
 \end{figure}
 \FloatBarrier
--------------Plot noch sinnvoller machen----------\\
+Die Werte des maximalen Winkels steigen kontinuierlich zunächst langsam und zu höheren $r_{\mathrm{min}}$-Werten hin steiler an, bevor sie bei $r_\mathrm{min} \approx \SI{0.09}{mm}$ in eine Sättigung von $\theta_{\mathrm{max}}\approx \SI{38}{°}$ übergehen.
 
 
 Des Weiteren werden die Reflektionswinkel $\theta_{\mathrm{refl}}$ nach Gleichung \eqref{eq:2} berechnet und ihre Verteilung in Abbildung \ref{fig:Theta_refl_sim} in Abhängigkeit vom Winkel $\theta$ aufgetragen.
@@ -137,3 +145,122 @@ Analog zu den minimalen Abständen $r_{\mathrm{min}}$ werden die Mittelwerte des
 \end{figure}
 \FloatBarrier
 Es zeigt sich ein linearer Zusammenhang zwischen dem Reflektionswinkel $\theta_{\mathrm{refl}}$ und dem Winkel des Photons zur Faserachse $\theta$.
+
+Für den Austrittswinkel $\alpha$ der Photonen, welcher über den horizontalen Winkel gemessen wird, kann über Winkelrelationen und das Snellius´sche Brechnungsgesetz der Zusammenhang
+\begin{align}
+    \alpha = \arcsin \left( \sin(\theta)\frac{n_\mathrm{K}}{n_\mathrm{Si}}\right)
+\end{align} 
+hergeleitet werden. Hierbei ist der Brechungsindex des Kernes durch $n_\mathrm{K} = 1.6$ \cite{anleitung} und des anschließenden Siliziums durch $n_\mathrm{K} = 3.352$ \cite{si} gegeben.
+Die Photonenintensität in Abhängigkeit vom Austrittswinkel ist in Abbildung \ref{fig:austritt_simu} für die Mantel- und Kernphotonen zu erkennen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/austritt_simu.pdf}
+    \caption{Anzahl an Photonen als Funktion des Austrittswinkels $\alpha$ für die Mantel- (links) und Kernphotonen (rechts). }
+    \label{fig:austritt_simu}
+\end{figure}
+\FloatBarrier
+
+\subsection{Auswertung der Messdaten}
+Zur Überprüfung der Abdunklung des Versuchaufbaus werden die Photonenintensitäten der Untergrundsmessreihen ohne Faseranregung in Abbildung \ref{fig:Untergrund_Untersuchung} in Abhängigkeit von der Wellenlänge $\lambda$ aufgetragen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/Untergrund_Untersuchung.pdf}
+    \caption{Photonenintensität durch Hintergrundbeleuchtung in Abhängigkeit von der Wellenlänge $\lambda$ für verschiedene Abdunklungsmaßnahmen.}
+    \label{fig:Untergrund_Untersuchung}
+\end{figure}
+\FloatBarrier
+Es lässt sich erkennen, dass für einen Aufbau mit abgedunkelten Raum und abgedecktem Versuchsaufbau der Hintergrund deutlich minimiert werden kann. Dieser Aufbau wird für die weiteren Messungen verwendet. 
+Im Vergleich der beiden Winkeleinstellungen lässt sich erkennen, dass die Abschirmung des Hintergrundes nicht für alle Winkel gleich gut funktioniert. 
+Für eine weitere Reduzierung des Einflusses der Hintergrundsbeleuchtung wird daher in jeder Messposition der Dunkelstrom aufgenommen und von den gemessenen Photonenintensitäten subtrahiert.
+
+Zur Überprüfung der Radialsymmetrie werden die aufgenommenen Zählraten nach Abziehen des Dunkelstroms für alle Wellenlängen, sowie für jeweils jeden horizontalen und jeden vertikalen Winkel aufsummiert. Die winkelabhängigen Counts sind in Abbildung \ref{fig:radial_test} zu erkennen. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/radial_test.pdf}
+    \caption{Aufgenommene Zählrate in Abhängigkeit vom horizontalen Winkel (links) und vertikalen Winkel (rechts) zur Überprüfung der Radialsymmetrie.}
+    \label{fig:radial_test}
+\end{figure}
+\FloatBarrier
+Beide Verteilungen lassen eine Radialsymmetrie erahnen, wobei der Mittelpunkt, welcher sich durch einen maximale Photonenintensität auszeichnet, leicht vom Winkel null verschoben ist. Für die folgenden Auswertungsschritte wird von einer radialsymmetrische Verteilung ausgegangen.
+
+
+Zur Untersuchung der Abschwächung der Photonenintensität entlang der Faser wird zunächst der relevante Wellenlängenbereich ermittelt. Dazu wird die Zählrate in Abhängigkeit von der Wellenlänge beispielhaft für die LED-Position $x = \SI{0}{cm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ aufgetragen. Die gewählten Schnittgrenzen sind in Abbildung \ref{fig:wellenlaengen_cut} durch die gestrichelte Linie gekennzeichnet.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/wellenlaengen_cut.pdf}
+    \caption{Verteilung der wellenlängenabhängigen Photonenintensität für eine LED-Position von $x = \SI{0}{cm}$ und einem horizontalen Winkel von $\SI{-10}{°}$. In dunkelgrün sind die Schnittgrenzen zur Auswahl des relevanten Wellenlängenbereiches zu erkennen.}
+    \label{fig:wellenlaengen_cut}
+\end{figure}
+\FloatBarrier
+Im Folgenden werden Daten aus dem Wellenlängenbereich $\SI{420}{nm} \leq \lambda \leq \SI{640}{nm}$ verwendet.
+
+Die Abschwächung $a_\mathrm{eff}$ ist durch den Zusammenhang 
+\begin{align}
+    I(x) = I_{0} \exp(a_\mathrm{eff} \cdot x)
+    \label{eq:exp_fit}
+\end{align}
+gegeben, mit der Photonenintensität $I(x)$ bei einer Anregung der Faser an der LED-Position $x$. Zur Berechnung der Abschwächung wird ein mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize} ein Fit der Gleichung \eqref{eq:exp_fit} für jede Wellenlänge und jeden Winkel durchgeführt. Die gefitteten Messpunkte sowie die Fitfunktion sind in Abbildung \ref{fig:Fit_exp_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ zu erkennen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/Fit_exp_bsp.pdf}
+    \caption{Messpunkte der Photonenintensität in Abhängigkeit von der LED-Position $x$, sowie die Fitfunktion zur Ermittlung der Abschwächung. Beispielhafte Abbildung für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ und einen horizontalen Winkel von $\SI{-10}{°}$.}
+    \label{fig:Fit_exp_bsp}
+\end{figure}
+\FloatBarrier
+Die Fitparameter $I_0$ und $a_\mathrm{eff}$ werden im Anschluss über die Wellenlängen gemittelt und in Abbildung \ref{fig:a_I0_winkel} als Funktion des horizontalen Winkels dargestellt. Der Fehler ergibt sich durch eine Mittelung des Fehlers der Fitparameter.
+\begin{figure}
+    \begin{subfigure}[c]{0.5\textwidth}    
+        \includegraphics[width=0.95\textwidth]{plots/Abschwaechung_winkel.pdf}
+        \subcaption{Abschwächung $a_\mathrm{eff}$}    
+    \end{subfigure}
+    \begin{subfigure}[c]{0.5\textwidth}
+        \includegraphics[width=0.95\textwidth]{plots/I0_winkel.pdf}
+        \subcaption{Anfangsintensität $I_0$}
+    \end{subfigure}
+    \caption{Fitparameter $I_0$ und $a_\mathrm{eff}$ in Abhängigkeit des horizontalen Winkels.}
+    \label{fig:a_I0_winkel}
+\end{figure}
+
+Für die Ermittlung des wellenlängenabhängigen Reflektionskoeffizienten $\epsilon$ wird ein Fit von Gleichung \eqref{eq:9} durchgeführt. Hierzu wird aus dem horizontalen Winkel $\alpha$ der Winkel des Photons zur Faserachse $\theta$ mittels 
+\begin{equation}
+    \theta = \arcsin \left( \sin(\alpha)\frac{n_\mathrm{Si}}{n_\mathrm{K}}\right)
+    \label{eq:theta}
+\end{equation}
+berechnet. Da die Winkel zur Faserachse $\theta$ relativ sind und keine negativen Werte annimmt, wird der Betrag der Winkelwerte ermittelt. Verwendet werden für den Fit lediglich Kernphotonen, da nur diese durch die im Theorieteil dargestellten Formeln beschrieben werden können. Aus Abbildung \ref{fig:austritt_simu} kann als Grenzwinkel ein horizontaler Winkel von $\alpha \approx \SI{15}{°}$ abgelesen werden.
+Für den minimalen Abstand zur Faserachse kann aus Abbildung \ref{fig:rmin_mean_sim} für die verwendeten Winkel ein Mittelwert von $r_\mathrm{min} = \SI{0.06}{mm}$ bestimmt werden, während der Kernradius durch $r_\mathrm{Kern} = \SI{0.11}{mm}$ \cite{anleitung} gegeben ist.
+Zur Durchführung des Fits wird nun für jede Wellenlänge die Abschwächung $a_\mathrm{eff}$ in Abhängigkeit vom Winkel $\theta$ aufgetragen und nach Gleichung \eqref{eq:9} gefittet. Dieses ist in Abbildung \ref{fig:fit_a_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ dargestellt.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/fit_a_bsp.pdf}
+    \caption{Beispielhafte Darstellung des Fits von der Abschwächung $a_\mathrm{eff}$ als Funktion des Winkel $\theta$ zur Ermittlung des Reflektionskoeffizienten $\epsilon$ für $\lambda = \SI{440.589}{nm}$.}
+    \label{fig:fit_a_bsp}
+\end{figure}
+\FloatBarrier
+Die Fitparameter $a_0$ und $\epsilon$ sind in Abbildung \ref{fig:a0_epsilon} in Abhängigkeit von der Wellenlänge aufgetragen.
+\begin{figure}
+    \begin{subfigure}[c]{0.5\textwidth}    
+        \includegraphics[width=0.95\textwidth]{plots/a0_lamda.pdf}
+        \subcaption{Parameter $a_0$.}    
+    \end{subfigure}
+    \begin{subfigure}[c]{0.5\textwidth}
+        \includegraphics[width=0.95\textwidth]{plots/reflektionskoeff_lamda.pdf}
+        \subcaption{Reflektionskoeffizient $\epsilon$.}
+    \end{subfigure}
+    \caption{Fitparameter $a_0$ und $\epsilon$ als Funktion der Wellenlänge $\lambda$.}
+    \label{fig:a_I0_winkel}
+\end{figure}
+
+Durch Umstellen von Gleichung \eqref{eq:9} nach $\epsilon$ kann für den Reflektionskoeffizienten als Funktion des Winkels $\theta$ der Zusammenhang 
+\begin{align}
+    \epsilon = \frac{2\sqrt{r_\mathrm{Kern}^2 -r_\mathrm{min}^2 }}{\tan(\theta)} \left(a_\mathrm{eff}-\frac{a_0}{\cos(\theta)}\right)
+    \label{eq:eps}
+\end{align}
+bestimmt werden. Bei der Berechnung von $\theta$ nach Gleichung \eqref{eq:theta} liefern nicht alle vermessenen Winkel einen zulässigen Wert für $\theta$: Für Austrittswinkel oberhalb von $\SI{20}{°}$ ist Formel \eqref{eq:theta} nicht gültig. 
+Für den zulässigen Bereich wird demnach der winkelabhängige Reflektionskoeffizient nach \eqref{eq:eps} berechnet und in Abbildung \ref{fig:reflektionskoeff_winkel} dargestellt. Für einen Winkel von $\theta = \SI{0}{°}$ ergibt sich durch die Division mit Null ein Wert von Unendlich, weshalb dieser ebenfalls vernachlässigt wird. Der Fehler wird mittels der Gauß´schen Fehlerfortpflanzung von $a_\mathrm{eff}$ und $a_\mathrm{0}$ ermittelt.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/reflektionskoeff_winkel.pdf}
+    \caption{Reflektionskoeffizient $\epsilon$ als Funktion des Winkels zur Faserachse $\theta$. Die Unsicherheiten überdecken einen Teil der Werte.}
+    \label{fig:reflektionskoeff_winkel}
+\end{figure}
+\FloatBarrier
