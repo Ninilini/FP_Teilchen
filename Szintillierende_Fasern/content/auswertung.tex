@@ -1,7 +1,7 @@
 \section{Auswertung}
 
 \subsection{Auswertung der Simulationsdaten}
-Da die Simulationsdaten Events enthalten, welche für die Auswertung nicht relevant sind, werden diese zunächst selektiert. Die Verteilung der Selektionsvariablen sind in Abbildung \ref{fig:Cuts_sim} abgebildet.
+Da die Simulationsdaten Events enthalten, welche für die Auswertung nicht relevant sind, werden diese zunächst selektiert. Die Verteilungen der Selektionsvariablen sind in Abbildung \ref{fig:Cuts_sim} abgebildet.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{plots/cuts_sim.pdf}
@@ -10,7 +10,7 @@ Da die Simulationsdaten Events enthalten, welche für die Auswertung nicht relev
   \end{figure}
   \FloatBarrier
 Photonen, welche in der Faser gestreut werden, können nicht mehr durch die in Kapitel \ref{theorie} gefundenen Gleichungen beschrieben werden. Aus diesem Grund werden Ereignisse, deren Anzahl an Rayleigh-Streuungen (\textit{rayleighScatterings}) größer als Null ist, verworfen.
-Des Weiteren sollen im Folgenden zwischen Photonen unterschieden werden, welche sich lediglich im Kern bewegen und welche, die in den Mantel reflektiert werden. Die Ersten werden im Folgenden als Kernphotonen bezeichnet, während die Photonen, welche in den Mantel eindringen, Mantelphotonen genannt werden.
+Des Weiteren soll im Folgenden zwischen Photonen unterschieden werden, welche sich lediglich im Kern bewegen und welche, die in den Mantel reflektiert werden. Die Ersten werden im Folgenden als Kernphotonen bezeichnet, während die Photonen, welche in den Mantel eindringen, Mantelphotonen genannt werden.
 Zu den Mantelphotonen zählen die Photonen mit einer Wegstrecke im Mantelmaterial (\textit{length\_clad}) und einer Anzahl an Reflektionen an der Mantel-Mantel-Grenzfläche (\textit{reflClCl}) größer Null. \\
 
 Im Anschluss wird für alle Photonen der Winkel $\theta$ zwischen der $x$-Achse der Faser und ihrer Wegstrecke bestimmt. Anhand von Abbildung \ref{fig:Geometrie} kann der Zusammenhang
@@ -36,11 +36,11 @@ Mit Hilfe der Histogramme wird das Verhältnis von Kern- und Mantelphotonen für
     \label{fig:ratio_sim}
 \end{figure}
 \FloatBarrier
-Ein besonders starkes Vorkommen von Mantelphotonen ist in einem Winkelbereich von etwa $\SI{15}{°}$ bis $\SI{30}{°}$ zu erkennen, wobei sich das Maximum bei einem Winkel von etwa über $\SI{20}{°}$ befindet.
+Ein besonders starkes Vorkommen von Mantelphotonen ist in einem Winkelbereich von etwa $\SI{15}{°}$ bis $\SI{30}{°}$ zu erkennen, wobei sich das Maximum bei einem Winkel von etwas über $\SI{20}{°}$ befindet.
 
 Verhältnisse von Kern- und Mantelphotonen mit dem Wert Null weisen auf Winkelbereiche hin, in denen lediglich Kernphotonen auftreten. Diese Bereiche sind in Abbildung \ref{fig:ratio_sim} mit der Farbe rot gekennzeichnet und treten für Winkelbereiche unterhalb von
 \begin{align*}
-    \theta_{\mathrm{just core, max}} = \SI{14.82}{°}
+    \theta_{\mathrm{nur Kern, max}} = \SI{14.82}{°}
 \end{align*}
 auf. \\
 
@@ -150,7 +150,7 @@ Für den Austrittswinkel $\alpha$ der Photonen, welcher über den horizontalen W
 \begin{align}
     \alpha = \arcsin \left( \sin(\theta)\frac{n_\mathrm{K}}{n_\mathrm{Si}}\right)
 \end{align} 
-hergeleitet werden. Hierbei ist der Brechungsindex des Kernes durch $n_\mathrm{K} = 1.6$ \cite{anleitung} und des anschließenden Siliziums durch $n_\mathrm{K} = 3.352$ \cite{si} gegeben.
+hergeleitet werden. Hierbei ist der Brechungsindex des Kernes durch $n_\mathrm{K} = 1.6$ \cite{anleitung} und des anschließenden Siliziums durch $n_\mathrm{Si} = 3.352$ \cite{si} gegeben.
 Die Photonenintensität in Abhängigkeit vom Austrittswinkel ist in Abbildung \ref{fig:austritt_simu} für die Mantel- und Kernphotonen zu erkennen.
 \begin{figure}
     \centering
@@ -181,7 +181,7 @@ Zur Überprüfung der Radialsymmetrie werden die aufgenommenen Zählraten nach A
     \label{fig:radial_test}
 \end{figure}
 \FloatBarrier
-Beide Verteilungen lassen eine Radialsymmetrie erahnen, wobei der Mittelpunkt, welcher sich durch einen maximale Photonenintensität auszeichnet, leicht vom Winkel null verschoben ist. Für die folgenden Auswertungsschritte wird von einer radialsymmetrische Verteilung ausgegangen.
+Beide Verteilungen lassen eine Radialsymmetrie erahnen, wobei der Mittelpunkt, welcher sich durch eine maximale Photonenintensität auszeichnet, leicht vom Winkel Null verschoben ist. Für die folgenden Auswertungsschritte wird von einer radialsymmetrischen Verteilung ausgegangen.
 
 
 Zur Untersuchung der Abschwächung der Photonenintensität entlang der Faser wird zunächst der relevante Wellenlängenbereich ermittelt. Dazu wird die Zählrate in Abhängigkeit von der Wellenlänge beispielhaft für die LED-Position $x = \SI{0}{cm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ aufgetragen. Die gewählten Schnittgrenzen sind in Abbildung \ref{fig:wellenlaengen_cut} durch die gestrichelte Linie gekennzeichnet.
@@ -199,7 +199,7 @@ Die Abschwächung $a_\mathrm{eff}$ ist durch den Zusammenhang
     I(x) = I_{0} \exp(a_\mathrm{eff} \cdot x)
     \label{eq:exp_fit}
 \end{align}
-gegeben, mit der Photonenintensität $I(x)$ bei einer Anregung der Faser an der LED-Position $x$. Zur Berechnung der Abschwächung wird ein mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize} ein Fit der Gleichung \eqref{eq:exp_fit} für jede Wellenlänge und jeden Winkel durchgeführt. Die gefitteten Messpunkte sowie die Fitfunktion sind in Abbildung \ref{fig:Fit_exp_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ zu erkennen.
+gegeben, mit der Photonenintensität $I(x)$ bei einer Anregung der Faser an der LED-Position $x$. Zur Berechnung der Abschwächung wird mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize} ein Fit der Gleichung \eqref{eq:exp_fit} für jede Wellenlänge und jeden Winkel durchgeführt. Die gefitteten Messpunkte sowie die Fitfunktion sind in Abbildung \ref{fig:Fit_exp_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ zu erkennen.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{plots/Fit_exp_bsp.pdf}
@@ -211,11 +211,11 @@ Die Fitparameter $I_0$ und $a_\mathrm{eff}$ werden im Anschluss über die Wellen
 \begin{figure}
     \begin{subfigure}[c]{0.5\textwidth}    
         \includegraphics[width=0.95\textwidth]{plots/Abschwaechung_winkel.pdf}
-        \subcaption{Abschwächung $a_\mathrm{eff}$}    
+        \subcaption{Abschwächung $a_\mathrm{eff}$.}    
     \end{subfigure}
     \begin{subfigure}[c]{0.5\textwidth}
         \includegraphics[width=0.95\textwidth]{plots/I0_winkel.pdf}
-        \subcaption{Anfangsintensität $I_0$}
+        \subcaption{Anfangsintensität $I_0$.}
     \end{subfigure}
     \caption{Fitparameter $I_0$ und $a_\mathrm{eff}$ in Abhängigkeit des horizontalen Winkels.}
     \label{fig:a_I0_winkel}
@@ -226,7 +226,7 @@ Für die Ermittlung des wellenlängenabhängigen Reflektionskoeffizienten $\epsi
     \theta = \arcsin \left( \sin(\alpha)\frac{n_\mathrm{Si}}{n_\mathrm{K}}\right)
     \label{eq:theta}
 \end{equation}
-berechnet. Da die Winkel zur Faserachse $\theta$ relativ sind und keine negativen Werte annimmt, wird der Betrag der Winkelwerte ermittelt. Verwendet werden für den Fit lediglich Kernphotonen, da nur diese durch die im Theorieteil dargestellten Formeln beschrieben werden können. Aus Abbildung \ref{fig:austritt_simu} kann als Grenzwinkel ein horizontaler Winkel von $\alpha \approx \SI{15}{°}$ abgelesen werden.
+berechnet. Da die Winkel zur Faserachse $\theta$ relativ sind und keine negativen Werte annehmen, wird der Betrag der Winkelwerte ermittelt. Verwendet werden für den Fit lediglich Kernphotonen, da nur diese durch die im Theorieteil dargestellten Formeln beschrieben werden können. Aus Abbildung \ref{fig:austritt_simu} kann als Grenzwinkel ein horizontaler Winkel von $\alpha \approx \SI{15}{°}$ abgelesen werden.
 Für den minimalen Abstand zur Faserachse kann aus Abbildung \ref{fig:rmin_mean_sim} für die verwendeten Winkel ein Mittelwert von $r_\mathrm{min} = \SI{0.06}{mm}$ bestimmt werden, während der Kernradius durch $r_\mathrm{Kern} = \SI{0.11}{mm}$ \cite{anleitung} gegeben ist.
 Zur Durchführung des Fits wird nun für jede Wellenlänge die Abschwächung $a_\mathrm{eff}$ in Abhängigkeit vom Winkel $\theta$ aufgetragen und nach Gleichung \eqref{eq:9} gefittet. Dieses ist in Abbildung \ref{fig:fit_a_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ dargestellt.
 \begin{figure}
@@ -247,8 +247,9 @@ Die Fitparameter $a_0$ und $\epsilon$ sind in Abbildung \ref{fig:a0_epsilon} in 
         \subcaption{Reflektionskoeffizient $\epsilon$.}
     \end{subfigure}
     \caption{Fitparameter $a_0$ und $\epsilon$ als Funktion der Wellenlänge $\lambda$.}
-    \label{fig:a_I0_winkel}
+    \label{fig:a0_epsilon}
 \end{figure}
+\FloatBarrier
 
 Durch Umstellen von Gleichung \eqref{eq:9} nach $\epsilon$ kann für den Reflektionskoeffizienten als Funktion des Winkels $\theta$ der Zusammenhang 
 \begin{align}
