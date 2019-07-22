@@ -99,7 +99,7 @@ In den Anstieg wird eine Fit-Funktion der Form
 \begin{align}
     r_{\mathrm{min}}(\theta) = a \arctan(b + c \theta)
 \end{align}
-gelegt.
+gelegt. Dieser Zusammenhang lässt sich durch Winkelrelationen in Abbildung \ref{fig:Geometrie} motivieren.
 Mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize} werden für die Parameter die Werte
 \begin{align*}
     a &= (655 \pm 2)\cdot 10^{-4} ,\\
@@ -160,6 +160,42 @@ Die Photonenintensität in Abhängigkeit vom Austrittswinkel ist in Abbildung \r
 \end{figure}
 \FloatBarrier
 
+Zur Untersuchung der winkelabhängigen Abschwächung wird ein zweidimenesionales Histogramm erstellt, welches die Zählrate pro Ausfallwinkel $\alpha$ und Anregungsposition $x$ darstellt. Letzteres ist durch die Simulationsvariable \textit{gpsPosX} gegeben.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/hist_x_alpha_simu.pdf}
+    \caption{Zweidimensionales Histogramm der Photonenintensität in Abhängigkeit von dem Ausfallwinkel $\alpha$ und der Anregungsposition $x$. }
+    \label{fig:hist_x_alpha_simu}
+\end{figure}
+\FloatBarrier
+Die Abschwächung $a_\mathrm{eff}$ ist durch den Zusammenhang 
+\begin{align}
+    I(x) = I_{0} \exp(a_\mathrm{eff} \cdot x)
+    \label{eq:exp_fit}
+\end{align}
+gegeben, mit der Photonenintensität $I(x)$ bei einer Anregung der Faser an der LED-Position $x$. 
+Für jeden Winkel wird die Intensität, repräsentiert durch das jeweilige Element der Histogrammmatrix, in Abhängigkeit von $x$ aufgetragen und mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize}  ein Fit von Gleichung \ref{eq:exp_fit} durchgeführt. Der Vorgang ist in Abbildung \ref{fig:fit_exp_simu_bsp} beispielhaft für den Winkel $\alpha = \SI{0}{°}$ dargestellt.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/fit_exp_simu_bsp.pdf}
+    \caption{Photonenintensität in Abhängigkeit von der Anregungsposition $x$, sowie die Fitfunktion zur Ermittlung der Abschwächung. Beispielhafte Abbildung für einen horizontalen Winkel von $\SI{0}{°}$.}
+    \label{fig:fit_exp_simu_bsp}
+\end{figure}
+\FloatBarrier
+Die Fitparameter $I_0$ und $a_\mathrm{eff}$ sind als Funktion des Austrittswinkels $\alpha$ in Abbildung \ref{fig:fit_exp_simu} zu erkennen.
+\begin{figure}
+    \begin{subfigure}[c]{0.5\textwidth}    
+        \includegraphics[width=0.95\textwidth]{plots/fit_exp_simu.pdf}
+        \subcaption{Abschwächung $a_\mathrm{eff}$.}    
+    \end{subfigure}
+    \begin{subfigure}[c]{0.5\textwidth}
+        \includegraphics[width=0.95\textwidth]{plots/fit_exp_simu_I0.pdf}
+        \subcaption{Anfangsintensität $I_0$.}
+    \end{subfigure}
+    \caption{Fitparameter $I_0$ und $a_\mathrm{eff}$ in Abhängigkeit des Austrittwinkels.}
+    \label{fig:fit_exp_simu}
+\end{figure}
+
 \subsection{Auswertung der Messdaten}
 Zur Überprüfung der Abdunklung des Versuchaufbaus werden die Photonenintensitäten der Untergrundsmessreihen ohne Faseranregung in Abbildung \ref{fig:Untergrund_Untersuchung} in Abhängigkeit von der Wellenlänge $\lambda$ aufgetragen.
 \begin{figure}
@@ -194,12 +230,7 @@ Zur Untersuchung der Abschwächung der Photonenintensität entlang der Faser wir
 \FloatBarrier
 Im Folgenden werden Daten aus dem Wellenlängenbereich $\SI{420}{nm} \leq \lambda \leq \SI{640}{nm}$ verwendet.
 
-Die Abschwächung $a_\mathrm{eff}$ ist durch den Zusammenhang 
-\begin{align}
-    I(x) = I_{0} \exp(a_\mathrm{eff} \cdot x)
-    \label{eq:exp_fit}
-\end{align}
-gegeben, mit der Photonenintensität $I(x)$ bei einer Anregung der Faser an der LED-Position $x$. Zur Berechnung der Abschwächung wird mittels der Funktion \textit{curve\_fit} des Packetes \textit{scipy\_optimize} ein Fit der Gleichung \eqref{eq:exp_fit} für jede Wellenlänge und jeden Winkel durchgeführt. Die gefitteten Messpunkte sowie die Fitfunktion sind in Abbildung \ref{fig:Fit_exp_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ zu erkennen.
+Zur Berechnung der Abschwächung wird analog zur Auswertung der Simulationsdaten ein Fit der Gleichung \eqref{eq:exp_fit} für jede Wellenlänge und jeden Winkel durchgeführt. Die gefitteten Messpunkte sowie die Fitfunktion sind in Abbildung \ref{fig:Fit_exp_bsp} beispielhaft für eine Wellenlänge von $\lambda = \SI{440.589}{nm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ zu erkennen.
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{plots/Fit_exp_bsp.pdf}
@@ -220,6 +251,7 @@ Die Fitparameter $I_0$ und $a_\mathrm{eff}$ werden im Anschluss über die Wellen
     \caption{Fitparameter $I_0$ und $a_\mathrm{eff}$ in Abhängigkeit des horizontalen Winkels.}
     \label{fig:a_I0_winkel}
 \end{figure}
+Im Vergleich mit Abbildung \ref{fig:fit_exp_simu} fallen die verschieden starken Abschwächungen auf. Da diese relative Größen sind, sind sie unabhängig von der Intentsität und sollten in derselben Größenordnung liegen. Es lässt sich anhand dieser Annahme ein Reflektionskoeffizienz in der Größenordnung von $0.2$ ableiten.
 
 Für die Ermittlung des wellenlängenabhängigen Reflektionskoeffizienten $\epsilon$ wird ein Fit von Gleichung \eqref{eq:9} durchgeführt. Hierzu wird aus dem horizontalen Winkel $\alpha$ der Winkel des Photons zur Faserachse $\theta$ mittels 
 \begin{equation}
