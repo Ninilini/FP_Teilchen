@@ -219,6 +219,16 @@ Zur Überprüfung der Radialsymmetrie werden die aufgenommenen Zählraten nach A
 \FloatBarrier
 Beide Verteilungen lassen eine Radialsymmetrie erahnen, wobei der Mittelpunkt, welcher sich durch eine maximale Photonenintensität auszeichnet, leicht vom Winkel Null verschoben ist. Für die folgenden Auswertungsschritte wird von einer radialsymmetrischen Verteilung ausgegangen.
 
+Um den Winkel zu ermitteln, unter welchem die meisten Photonen die Faser verlassen werden die untergrundkorrigierten Zählraten über alle Wellenlängen und LED-Anregungspositionen für jeden horizontalen Winkel aufsummiert. Die summierten Zählraten werden anschließend mit dem Faktor $\sin(\alpha)$ multipliziert, wobei $\alpha$ den horizontalen Winkel repräsentiert. Dieses berücksichtig, dass die Messung lediglich unter einem vertikalen Winkel stattgefunden hat, die Photonen aber in alle Richtungen die Faser verlassen.
+Die erhaltenen Werte werden dann in Abbildung \ref{fig:Punkt5} gegen den horizontalen Winkel aufgetragen.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{plots/punkt5_mess.pdf}
+    \caption{Zählrate der Photonen in Abhängigkeit des Austrittwinkels $\alpha$.}
+    \label{fig:Punkt5}
+\end{figure}
+\FloatBarrier
+Im Vergleich mit Abbildung \ref{fig:austritt_simu}, welche dieselben Größen für die Simulationswerte zeigt, fällt auf, dass der Maximalwinkel um etwa dreizig Grad verschoben ist. Hier spielt zum einen mit herein, dass die Nullposition um etwa fünfzehn Grad verschoben ist, wie Abbildung \ref{fig:radial_test} zu entnehmen ist. Außerdem wird in den Messdaten nicht zwischen Mantel- und Kernphotonen unterschieden. Die Mantelphotonen erreichen, wie in den Simulationsdaten in Abbildung \ref{fig:austritt_simu} erkennbar, später ihr Maximum. Des Weiteren sind in dem Bereich des Kernphotonenmaximums lediglich eine sehr geringe Anzahl an Mantelphotonen auszumachen. Diese Tatsache erklärt auch die unterschiedlichen Verläufe der Werte.
 
 Zur Untersuchung der Abschwächung der Photonenintensität entlang der Faser wird zunächst der relevante Wellenlängenbereich ermittelt. Dazu wird die Zählrate in Abhängigkeit von der Wellenlänge beispielhaft für die LED-Position $x = \SI{0}{cm}$ und einen horizontalen Winkel von $\SI{-10}{°}$ aufgetragen. Die gewählten Schnittgrenzen sind in Abbildung \ref{fig:wellenlaengen_cut} durch die gestrichelte Linie gekennzeichnet.
 \begin{figure}
